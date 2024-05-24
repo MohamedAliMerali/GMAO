@@ -8,7 +8,12 @@ import { User } from "./Data/users";
 
 function App() {
   const [logged, setLogged] = useState(true);
-  const [user, setUser] = useState<User>({} as User);
+  const [user, setUser] = useState<User>({
+    name: "admin",
+    password: "admin",
+    type: "admin",
+    authorizations: [],
+  });
   const [selectedItem, setSelectedItem] = useState(0);
 
   return (

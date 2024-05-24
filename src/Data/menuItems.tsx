@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { MdOutlineTaskAlt } from "react-icons/md";
 import TasksList from "../components/Menu/Pages/TasksList";
 import MaintenancePlans from "../components/Menu/Pages/MaintenancePlans";
 import MachinesStates from "../components/Menu/Pages/MachinesStates";
@@ -7,6 +6,13 @@ import MachineDocuments from "../components/Menu/Pages/MachineDocuments";
 import PiecesStore from "../components/Menu/Pages/PiecesStore";
 import Dashboard from "../components/Menu/Pages/Dashboard";
 import { User } from "./users";
+// import { MdOutlineTaskAlt } from "react-icons/md";
+import { SiGoogletasks } from "react-icons/si";
+import { FaCalendarPlus } from "react-icons/fa";
+import { IoIosSpeedometer } from "react-icons/io";
+import { IoDocuments } from "react-icons/io5";
+import { FaScrewdriverWrench } from "react-icons/fa6";
+import { BsFillMotherboardFill } from "react-icons/bs";
 
 // Define the type for the menu items
 interface MenuItem {
@@ -19,32 +25,32 @@ interface MenuItem {
 export const menuItems: MenuItem[] = [
   {
     item: "Liste des taches",
-    icon: <MdOutlineTaskAlt />,
+    icon: <SiGoogletasks />,
     component: (user) => <TasksList user={user} />,
   },
   {
     item: "Plans de maintenance",
-    icon: <MdOutlineTaskAlt />,
+    icon: <FaCalendarPlus />,
     component: (user) => <MaintenancePlans user={user} />,
   },
   {
     item: "Etat des machines",
-    icon: <MdOutlineTaskAlt />,
+    icon: <IoIosSpeedometer />,
     component: (user) => <MachinesStates user={user} />,
   },
   {
     item: "Documents machines",
-    icon: <MdOutlineTaskAlt />,
+    icon: <IoDocuments />,
     component: (user) => <MachineDocuments user={user} />,
   },
   {
     item: "Magasin des piece",
-    icon: <MdOutlineTaskAlt />,
+    icon: <FaScrewdriverWrench />,
     component: (user) => <PiecesStore user={user} />,
   },
   {
     item: "Reporting & Dashboard",
-    icon: <MdOutlineTaskAlt />,
+    icon: <BsFillMotherboardFill />,
     component: (user) => <Dashboard user={user} />,
   },
 ];
