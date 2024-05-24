@@ -28,39 +28,41 @@ const TasksList = ({ user }: Props) => {
   return (
     <div className="space-y-6">
       <h2 className="text-5xl">Bienvenue {user.name}</h2>
-      <div>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div>
-            <label htmlFor="newTask">Nouveau Tâche:</label>
-            <br />
-            <input
-              type="text"
-              id="newTask"
-              {...register("newTask")}
-              placeholder="Nouveau Tâche..."
-              className="rounded-lg border-none outline-none py-2 px-4 w-full"
-            />
-          </div>
-          <div>
-            <label htmlFor="note">Remarque:</label>
-            <br />
-            <input
-              type="text"
-              id="note"
-              {...register("note")}
-              placeholder="Note..."
-              className="rounded-lg border-none outline-none py-2 px-4 w-full"
-            />
-          </div>
-          <button
-            type="submit"
-            className="outline-0 border-0 py-2 px-4 bg-blue-600 text-white rounded-lg"
-          >
-            {" "}
-            Add
-          </button>
-        </form>
-      </div>
+      {user.authorizations.includes("createTask") ? (
+        <div>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <div>
+              <label htmlFor="newTask">Nouveau Tâche:</label>
+              <br />
+              <input
+                type="text"
+                id="newTask"
+                {...register("newTask")}
+                placeholder="Nouveau Tâche..."
+                className="rounded-lg border-none outline-none py-2 px-4 w-full"
+              />
+            </div>
+            <div>
+              <label htmlFor="note">Remarque:</label>
+              <br />
+              <input
+                type="text"
+                id="note"
+                {...register("note")}
+                placeholder="Note..."
+                className="rounded-lg border-none outline-none py-2 px-4 w-full"
+              />
+            </div>
+            <button
+              type="submit"
+              className="outline-0 border-0 py-2 px-4 bg-blue-600 text-white rounded-lg"
+            >
+              {" "}
+              Add
+            </button>
+          </form>
+        </div>
+      ) : null}
       <div>
         <table className="table table-striped table-hover">
           <thead>
@@ -83,34 +85,44 @@ const TasksList = ({ user }: Props) => {
                 <td>{date}</td>
                 <td>{note}</td>
                 <td>
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary"
-                    onClick={() => {
-                      console.log("validate");
-                      setTasks(
-                        tasks.map((task, index) =>
-                          index === taskIndex
-                            ? { ...task, validation: true }
-                            : task
-                        )
-                      );
-                    }}
-                  >
-                    Validate
-                  </button>
+                  {user.authorizations.includes("validateTask") ? (
+                    <button
+                      type="button"
+                      className="btn btn-outline-primary"
+                      onClick={() => {
+                        console.log("validate");
+                        setTasks(
+                          tasks.map((task, index) =>
+                            index === taskIndex
+                              ? { ...task, validation: true }
+                              : task
+                          )
+                        );
+                      }}
+                    >
+                      Validate
+                    </button>
+                  ) : (
+                    " "
+                  )}
                 </td>
                 <td>
-                  <button
-                    type="button"
-                    className="btn btn-outline-danger"
-                    onClick={() => {
-                      console.log(">> Table item Delete", taskIndex);
-                      setTasks(tasks.filter((_, index) => index !== taskIndex));
-                    }}
-                  >
-                    Delete
-                  </button>
+                  {user.authorizations.includes("deleteTask") ? (
+                    <button
+                      type="button"
+                      className="btn btn-outline-danger"
+                      onClick={() => {
+                        console.log(">> Table item Delete", taskIndex);
+                        setTasks(
+                          tasks.filter((_, index) => index !== taskIndex)
+                        );
+                      }}
+                    >
+                      Delete
+                    </button>
+                  ) : (
+                    " "
+                  )}
                 </td>
               </tr>
             ))}

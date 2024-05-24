@@ -12,7 +12,7 @@ function App() {
     name: "admin",
     password: "admin",
     type: "admin",
-    authorizations: [],
+    authorizations: ["createTask", "validateTask", "deleteTask"],
   });
   const [selectedItem, setSelectedItem] = useState(0);
 
