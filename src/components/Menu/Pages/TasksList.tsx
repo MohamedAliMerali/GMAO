@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { User } from "../../../Data/users";
-import tasksLists from "../../../Data/Tasks";
+import tasksLists, { updateTask } from "../../../Data/Tasks";
 import { FieldValues, useForm } from "react-hook-form";
 import { getCurrentFormattedDate } from "../../../util/dates";
+import Container from "../../../UI/Container";
 
 interface Props {
   user: User;
@@ -14,7 +15,7 @@ const TasksList = ({ user }: Props) => {
 
   const onSubmit = (data: FieldValues) => {
     console.log(data);
-    setTasks([
+    const newTasks = [
       ...tasks,
       {
         name: data.newTask,
@@ -22,12 +23,13 @@ const TasksList = ({ user }: Props) => {
         note: data.note,
         date: getCurrentFormattedDate(),
       },
-    ]);
+    ];
+    updateTask(newTasks);
+    setTasks(newTasks);
   };
 
   return (
-    <div className="space-y-6">
-      <h2 className="text-5xl">Bienvenue {user.name}</h2>
+    <Container pageTitle={"Bienvenue " + user.name}>
       {user.authorizations.includes("createTask") ? (
         <div>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -129,7 +131,7 @@ const TasksList = ({ user }: Props) => {
           </tbody>
         </table>
       </div>
-    </div>
+    </Container>
   );
 };
 

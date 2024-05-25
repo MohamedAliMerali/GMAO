@@ -5,7 +5,7 @@ export interface Task {
   note: string;
 }
 
-export default [
+let tasks: Task[] = [
   {
     name: "do something",
     validation: false,
@@ -25,3 +25,9 @@ export default [
     note: "",
   },
 ];
+export default tasks;
+
+// Function to update an existing task
+export const updateTask = (updatedTask: Task[]): void => {
+  tasks = updatedTask;
+};
