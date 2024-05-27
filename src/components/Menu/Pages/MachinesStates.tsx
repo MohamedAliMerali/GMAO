@@ -1,41 +1,15 @@
+import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import Container from "../../../UI/Container";
-import machines from "../../../Data/machines";
-import { useState } from "react";
+import machines, { report as importedReport } from "../../../Data/machines";
 
 const MachinesStates = () => {
   const { register, handleSubmit } = useForm();
-  const [report, setReport] = useState({
-    TBF: 0,
-    MTBF: 0,
-    MTTR: 0,
-    DISP: 0,
-  });
+  const [report, setReport] = useState(importedReport);
 
   const onSubmit = (data: FieldValues) => {
     console.log("Submitted!");
     console.log(data);
-  };
-
-  {
-    /* 
-  "WorkHours_" + index
-  "numPanne_" + index
-  "breakDuration_" + index 
-  */
-  }
-  const getTBF = () => {
-    return 0;
-  };
-
-  const getMTBF = () => {
-    return 0;
-  };
-  const getMTTR = () => {
-    return 0;
-  };
-  const getDISP = () => {
-    return 0;
   };
 
   return (
@@ -54,6 +28,10 @@ const MachinesStates = () => {
               <th scope="col">Les heures de travail</th>
               <th scope="col">NUM.Panne(s)</th>
               <th scope="col">Durèe de(s) Panne(s)</th>
+              <th scope="col">TBF</th>
+              <th scope="col">MTBF</th>
+              <th scope="col">MTTR</th>
+              <th scope="col">DISP</th>
             </tr>
           </thead>
           <tbody>
@@ -93,34 +71,25 @@ const MachinesStates = () => {
                     className="rounded-2xl text-center"
                   />
                 </td>
+                <td>{report[index].TBF}</td>
+                <td>{report[index].MTBF}</td>
+                <td>{report[index].MTTR}</td>
+                <td>{report[index].DISP}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </form>
-
-      <h2 className="text-5xl">Report</h2>
-
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th>TBF:</th>
-            <th>MTBF:</th>
-            <th>MTTR:</th>
-            <th>DISP:</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{getTBF()}</td>
-            <td>{getMTBF()}</td>
-            <td>{getMTTR()}</td>
-            <td>{getDISP()}</td>
-          </tr>
-        </tbody>
-      </table>
     </Container>
   );
 };
 
 export default MachinesStates;
+
+{
+  /* 
+"WorkHours_" + index
+"numPanne_" + index
+"breakDuration_" + index 
+*/
+}

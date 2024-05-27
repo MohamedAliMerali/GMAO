@@ -9,6 +9,20 @@ const machines = [
         validation: false,
         note: "URG",
       },
+      {
+        tasks: "Task 2",
+        Responsable: "Admin",
+        delay: "5j",
+        validation: false,
+        note: "URG",
+      },
+      {
+        tasks: "Task 3",
+        Responsable: "Admin",
+        delay: "5j",
+        validation: false,
+        note: "URG",
+      },
     ],
     documentation: [
       {
@@ -240,5 +254,11 @@ const machines = [
     ],
   },
 ];
-
 export default machines;
+
+machines.map(() => ({ TBF: 0, MTBF: 0, MTTR: 0, DISP: 0 }));
+
+// to make sure the num of those é objects matches
+const report = machines.map(() => ({ TBF: 0, MTBF: 0, MTTR: 0, DISP: 0 }));
+
+export { report };
