@@ -8,6 +8,7 @@ interface Props {
 
 const PiecesStore = ({ user }: Props) => {
   return (
+    // Todo: add a form to add some pieces
     <Container pageTitle={"Liste des pièces de rechange:"}>
       <ul>
         {pieces.map((piece) => (

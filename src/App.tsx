@@ -15,7 +15,7 @@ function App() {
     type: "admin",
     authorizations: ["createTask", "validateTask", "deleteTask"],
   });
-  const [selectedItem, setSelectedItem] = useState(0);
+  const [selectedItem, setSelectedItem] = useState(2);
 
   return (
     <div className="flex flex-col h-screen">

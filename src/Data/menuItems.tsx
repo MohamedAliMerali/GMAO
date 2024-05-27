@@ -36,7 +36,7 @@ export const menuItems: MenuItem[] = [
   {
     item: "Etat des machines",
     icon: <IoIosSpeedometer />,
-    component: (user) => <MachinesStates user={user} />,
+    component: () => <MachinesStates />,
   },
   {
     item: "Documents machines",
