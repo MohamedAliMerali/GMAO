@@ -260,6 +260,6 @@ export default machines;
 machines.map(() => ({ TBF: 0, MTBF: 0, MTTR: 0, DISP: 0 }));
 
 // to make sure the num of those é objects matches
-const reports = machines.map(() => ({ TBF: 0, MTBF: 0, MTTR: 0, DISP: 0 }));
+const reports = machines.map(() => ({ TBF: 0, MTBF: 0, MTTR: 0, DISP: 0.0 }));
 
 export { reports };

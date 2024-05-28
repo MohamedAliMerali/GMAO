@@ -13,8 +13,7 @@ const MachinesStates = () => {
 
   // Todo add history section down below
   const onSubmit = (data: FieldValues) => {
-    console.log("Submitted!");
-    console.log(data);
+    console.log(">> data  ", data);
 
     // check if all numbers are provied
     for (let index = 0; index < data.length; index++) {
@@ -29,26 +28,46 @@ const MachinesStates = () => {
       }
     }
 
+    const newHistory = history.map((histItem, index) => ({
+      // TBF: item.TBF + newReports[index].TBF,
+      TBF:
+        histItem.TBF +
+        parseInt(data["WorkHours_" + index]) -
+        parseInt(data["breakDuration_" + index]),
+      breakDuration_:
+        histItem.breakDuration_ + parseInt(data["breakDuration_" + index]),
+    }));
+
+    // making the new report
+    // we used a new var so we can use the new values in history
     const newReports = reports.map((item, index) => {
       const tbf =
         parseInt(data["WorkHours_" + index]) -
         parseInt(data["breakDuration_" + index]);
 
-      const mtbf = 0;
-      const mttr = 0;
-      const disp = 0;
+      // ? check here ig you need an interface to access the properties of data
+      const mtbf =
+        data["numPanne_" + index] === 0
+          ? 0
+          : newHistory[index]["TBF"] / data["numPanne_" + index];
+      const mttr =
+        data["numPanne_" + index] === 0
+          ? 0
+          : newHistory[index]["breakDuration_"] / data["numPanne_" + index];
+      const disp = mttr + mtbf === 0 ? 100 : (mtbf / (mttr + mtbf)) * 100;
+      // const disp =
+      //   data["MTBF"] + data["MTTR"] === 0
+      //     ? 100
+      //     : (reports[index]["MTBF"] /
+      //         (reports[index]["MTBF"] + reports[index]["MTTR"])) *
+      //       100;
       return {
         TBF: tbf,
         MTBF: mtbf,
         MTTR: mttr,
-        DISP: disp,
+        DISP: parseFloat(disp.toFixed(2)),
       };
     });
-    const newHistory = history.map((item, index) => ({
-      TBF: item.TBF + newReports[index].TBF,
-      breakDuration_:
-        item.breakDuration_ + parseInt(data["breakDuration_" + index]),
-    }));
 
     setReports(newReports);
     setHistory(newHistory);
@@ -56,6 +75,7 @@ const MachinesStates = () => {
     // debug
     console.log(">> newReports:", newReports);
     console.log(">> newHistory:", newHistory);
+    console.log(">> history:", history);
   };
 
   {
