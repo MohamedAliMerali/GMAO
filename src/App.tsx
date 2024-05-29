@@ -15,14 +15,14 @@ function App() {
     type: "admin",
     authorizations: ["createTask", "validateTask", "deleteTask"],
   });
-  const [selectedItem, setSelectedItem] = useState(2);
+  const [selectedItem, setSelectedItem] = useState(3);
 
   return (
     <div className="flex flex-col h-screen">
       {logged ? null : <LogIn setLogged={setLogged} setUser={setUser}></LogIn>}
       <Bar user={user} />
       <div className="flex flex-1">
-        <div className="w-full max-w-md bg-stone-600 ">
+        <div className="w-full max-w-lg bg-stone-600 ">
           <ul className="pt-8 text-white">
             {menuItems.map(({ item, icon }, num) => (
               <li

@@ -41,7 +41,7 @@ export const menuItems: MenuItem[] = [
   {
     item: "Documents machines",
     icon: <IoDocuments />,
-    component: (user) => <MachineDocuments user={user} />,
+    component: () => <MachineDocuments />,
   },
   {
     item: "Magasin des piece",
