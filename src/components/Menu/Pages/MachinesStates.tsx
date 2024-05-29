@@ -13,6 +13,10 @@ const MachinesStates = () => {
 
   // Todo add history section down below
   const onSubmit = (data: FieldValues) => {
+    // parsing data from strings into integers
+    Object.entries(data).forEach(([key, value]) => {
+      data[key] = parseInt(value);
+    });
     console.log(">> data  ", data);
 
     // check if all numbers are provied
@@ -118,6 +122,7 @@ const MachinesStates = () => {
                     type="number"
                     placeholder="0"
                     // value={getRandomNumberBetween(5, 15)}
+                    defaultValue={0}
                     min={0}
                     name={"WorkHours_" + index}
                     id={"WorkHours_" + index}
@@ -130,6 +135,7 @@ const MachinesStates = () => {
                     type="number"
                     placeholder="0"
                     // value={getRandomNumberBetween(1, 5)}
+                    defaultValue={0}
                     min={0}
                     name={"numPanne_" + index}
                     id={"numPanne_" + index}
@@ -142,6 +148,7 @@ const MachinesStates = () => {
                     type="number"
                     placeholder="0"
                     // value={getRandomNumberBetween(1, 5)}
+                    defaultValue={0}
                     min={0}
                     name={"breakDuration_" + index}
                     id={"breakDuration_" + index}
