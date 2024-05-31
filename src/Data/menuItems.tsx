@@ -46,7 +46,7 @@ export const menuItems: MenuItem[] = [
   {
     item: "Magasin des piece",
     icon: <FaScrewdriverWrench />,
-    component: (user) => <PiecesStore user={user} />,
+    component: () => <PiecesStore />,
   },
   {
     item: "Reporting & Dashboard",

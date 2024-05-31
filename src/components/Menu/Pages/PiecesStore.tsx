@@ -17,8 +17,11 @@ const PiecesStore = () => {
       </ul> */}
 
       <ul className="list-group hover:cursor-pointer">
-        {pieces.map((piece) => (
-          <li className="list-group-item d-flex justify-content-between align-items-start my-1 rounded-3 hover:bg-slate-200 transition-all">
+        {pieces.map((piece, index) => (
+          <li
+            key={index}
+            className="list-group-item d-flex justify-content-between align-items-start my-1 rounded-3 hover:bg-slate-200 transition-all"
+          >
             <span>{piece.name}</span>
             <span className="badge text-bg-primary rounded-pill">
               {piece.number}

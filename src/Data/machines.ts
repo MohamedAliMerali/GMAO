@@ -4,22 +4,22 @@ const machines = [
     MaintenancePlans: [
       {
         tasks: "Task 1",
-        Responsable: "Admin",
-        delay: "5j",
+        responsable: "Admin",
+        delay: "2024-09-04",
         validation: false,
         note: "URG",
       },
       {
         tasks: "Task 2",
-        Responsable: "Admin",
-        delay: "5j",
+        responsable: "Admin",
+        delay: "2024-09-04",
         validation: false,
         note: "URG",
       },
       {
         tasks: "Task 3",
-        Responsable: "Admin",
-        delay: "5j",
+        responsable: "Admin",
+        delay: "2024-09-04",
         validation: false,
         note: "URG",
       },
@@ -42,8 +42,8 @@ const machines = [
     MaintenancePlans: [
       {
         tasks: "Task 1",
-        Responsable: "Admin",
-        delay: "5j",
+        responsable: "Admin",
+        delay: "2024-09-04",
         validation: false,
         note: "URG",
       },
@@ -67,8 +67,8 @@ const machines = [
     MaintenancePlans: [
       {
         tasks: "Task 1",
-        Responsable: "Admin",
-        delay: "5j",
+        responsable: "Admin",
+        delay: "2024-09-04",
         validation: false,
         note: "URG",
       },
@@ -91,8 +91,8 @@ const machines = [
     MaintenancePlans: [
       {
         tasks: "Task 1",
-        Responsable: "Admin",
-        delay: "5j",
+        responsable: "Admin",
+        delay: "2024-09-04",
         validation: false,
         note: "URG",
       },
@@ -115,8 +115,8 @@ const machines = [
     MaintenancePlans: [
       {
         tasks: "Task 1",
-        Responsable: "Admin",
-        delay: "5j",
+        responsable: "Admin",
+        delay: "2024-09-04",
         validation: false,
         note: "URG",
       },
@@ -139,8 +139,8 @@ const machines = [
     MaintenancePlans: [
       {
         tasks: "Task 1",
-        Responsable: "Admin",
-        delay: "5j",
+        responsable: "Admin",
+        delay: "2024-09-04",
         validation: false,
         note: "URG",
       },
@@ -163,8 +163,8 @@ const machines = [
     MaintenancePlans: [
       {
         tasks: "Task 1",
-        Responsable: "Admin",
-        delay: "5j",
+        responsable: "Admin",
+        delay: "2024-09-04",
         validation: false,
         note: "URG",
       },
@@ -187,8 +187,8 @@ const machines = [
     MaintenancePlans: [
       {
         tasks: "Task 1",
-        Responsable: "Admin",
-        delay: "5j",
+        responsable: "Admin",
+        delay: "2024-09-04",
         validation: false,
         note: "URG",
       },
@@ -211,8 +211,8 @@ const machines = [
     MaintenancePlans: [
       {
         tasks: "Task 1",
-        Responsable: "Admin",
-        delay: "5j",
+        responsable: "Admin",
+        delay: "2024-09-04",
         validation: false,
         note: "URG",
       },
@@ -235,8 +235,8 @@ const machines = [
     MaintenancePlans: [
       {
         tasks: "Task 1",
-        Responsable: "Admin",
-        delay: "5j",
+        responsable: "Admin",
+        delay: "2024-09-04",
         validation: false,
         note: "URG",
       },

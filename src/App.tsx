@@ -4,18 +4,13 @@ import "./App.css";
 import LogIn from "./components/LogIn";
 import Menu from "./components/Menu";
 import { menuItems } from "./Data/menuItems";
-import { User } from "./Data/users";
+import users, { User } from "./Data/users";
 import Bar from "./components/Bar";
 
 function App() {
   const [logged, setLogged] = useState(true);
-  const [user, setUser] = useState<User>({
-    name: "admin",
-    password: "admin",
-    type: "admin",
-    authorizations: ["createTask", "validateTask", "deleteTask"],
-  });
-  const [selectedItem, setSelectedItem] = useState(3);
+  const [user, setUser] = useState<User>(users[0]);
+  const [selectedItem, setSelectedItem] = useState(1);
 
   return (
     <div className="flex flex-col h-screen">
