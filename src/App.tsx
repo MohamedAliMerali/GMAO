@@ -6,18 +6,31 @@ import Menu from "./components/Menu";
 import { menuItems } from "./Data/menuItems";
 import users, { User } from "./Data/users";
 import Bar from "./components/Bar";
+import Welcome from "./components/Welcome";
 
 function App() {
   const [logged, setLogged] = useState(true);
   const [user, setUser] = useState<User>(users[0]);
-  const [selectedItem, setSelectedItem] = useState(1);
+  const [userId, setUserId] = useState(0);
+  const [selectedItem, setSelectedItem] = useState(-1);
+
+  const logOut = () => {
+    setUser({} as User);
+    setLogged(false);
+    setSelectedItem(-1);
+  };
+
+  if (!logged)
+    return (
+      <LogIn setLogged={setLogged} setUser={setUser} setUserId={setUserId} />
+    );
 
   return (
     <div className="flex flex-col h-screen">
-      {logged ? null : <LogIn setLogged={setLogged} setUser={setUser}></LogIn>}
-      <Bar user={user} />
+      <Bar user={user} userId={userId} logOut={logOut} />
       <div className="flex flex-1">
-        <div className="w-full max-w-lg bg-stone-600 ">
+        {/* menu */}
+        <div className="w-full max-w-sm bg-stone-600 md:max-w-md lg:max-w-xl">
           <ul className="pt-8 text-white">
             {menuItems.map(({ item, icon }, num) => (
               <li
@@ -30,10 +43,10 @@ function App() {
                 onClick={() => setSelectedItem(num)}
               >
                 <div className="flex flex-row">
-                  <span className="m-2">{icon}</span>
+                  <span className="m-2 hidden md:block">{icon}</span>
                   {item}
                 </div>
-                <span className="m-2">
+                <span className="m-2 hidden sm:block">
                   <VscTriangleRight />
                 </span>
               </li>
@@ -41,11 +54,12 @@ function App() {
           </ul>
         </div>
 
+        {/* selected page */}
         <div className="bg-gray-300 w-full px-16 pt-20 h-full overflow-y-scroll">
           {selectedItem >= 0 ? (
             <Menu user={user} itemNum={selectedItem} />
           ) : (
-            <div>WELCOME HEHE</div>
+            <Welcome />
           )}
         </div>
       </div>

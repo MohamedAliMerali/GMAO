@@ -5,7 +5,7 @@ import machines, { reports as importedReport } from "../../../Data/machines";
 
 const MachinesStates = () => {
   const { register, handleSubmit } = useForm();
-  const [valuesError, setValuesError] = useState(false);
+  const [valuesError, setValuesError] = useState(true);
   const [reports, setReports] = useState(importedReport);
   const [history, setHistory] = useState(
     machines.map(() => ({ TBF: 0, breakDuration_: 0 }))
@@ -44,7 +44,7 @@ const MachinesStates = () => {
 
     // making the new report
     // we used a new var so we can use the new values in history
-    const newReports = reports.map((item, index) => {
+    const newReports = reports.map((_, index) => {
       const tbf =
         parseInt(data["WorkHours_" + index]) -
         parseInt(data["breakDuration_" + index]);
@@ -92,13 +92,16 @@ const MachinesStates = () => {
 
   return (
     <Container pageTitle={"Veuillez remplir les données d'aujourd'hui "}>
+      {valuesError ? <p className="text-red-600">error</p> : null}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <button
-          type="submit"
-          className="outline-0 border-0 py-2 px-4 mb-4 bg-blue-600 text-white rounded-lg"
-        >
-          Calc
-        </button>
+        <div className="flex justify-end">
+          <button
+            type="submit"
+            className="outline-0 border-0 py-2 px-4 mb-4 bg-blue-600 text-white rounded-lg"
+          >
+            Calc
+          </button>
+        </div>
         <table className="table table-hover">
           <thead>
             <tr className="table-light">
@@ -158,7 +161,7 @@ const MachinesStates = () => {
                 <td>{reports[index].TBF}</td>
                 <td>{reports[index].MTBF}</td>
                 <td>{reports[index].MTTR}</td>
-                <td>{reports[index].DISP}</td>
+                <td>{reports[index].DISP}%</td>
               </tr>
             ))}
           </tbody>

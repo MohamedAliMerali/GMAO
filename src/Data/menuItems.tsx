@@ -51,6 +51,6 @@ export const menuItems: MenuItem[] = [
   {
     item: "Reporting & Dashboard",
     icon: <BsFillMotherboardFill />,
-    component: (user) => <Dashboard user={user} />,
+    component: () => <Dashboard />,
   },
 ];

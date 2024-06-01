@@ -27,17 +27,26 @@ const MaintenancePlans = ({ user }: Props) => {
   }, []);
 
   const { register, handleSubmit } = useForm();
+
   const onSubmit = (data: FieldValues) => {
     console.log(data);
-    const newMaintenancePlans = maintenancePlans;
-    newMaintenancePlans[selectedItem].push({
-      tasks: data.tasks,
-      responsable: data.responsable,
-      delay: data.delay,
-      validation: data.validation,
-      note: data.note,
-    });
-    setMaintenancePlans(newMaintenancePlans);
+    console.log(maintenancePlans[selectedItem]);
+    setMaintenancePlans(
+      maintenancePlans.map((plan, index) => {
+        return selectedItem === index
+          ? [
+              ...plan,
+              {
+                tasks: data.tasks,
+                responsable: data.responsable,
+                delay: data.delay,
+                validation: data.validation,
+                note: data.note,
+              },
+            ]
+          : plan;
+      })
+    );
   };
 
   if (selectedItem === -1)
@@ -192,7 +201,7 @@ const MaintenancePlans = ({ user }: Props) => {
       ) : null}
 
       {/* plans Table */}
-      <table className="table table-hover mb-4">
+      <table className="table table-hover mb-6">
         <thead>
           <tr className="table-light">
             <th scope="col">Les taches</th>
@@ -200,6 +209,7 @@ const MaintenancePlans = ({ user }: Props) => {
             <th scope="col">Dernier délais</th>
             <th scope="col">Validation</th>
             <th scope="col">Remarque</th>
+            <th scope="col">Controle</th>
           </tr>
         </thead>
         <tbody>
@@ -210,6 +220,23 @@ const MaintenancePlans = ({ user }: Props) => {
               <td scope="row">{plan.delay}</td>
               <td scope="row">{plan.validation}</td>
               <td scope="row">{plan.note}</td>
+              <td scope="row">
+                <button
+                  type="button"
+                  className="btn btn-outline-danger"
+                  onClick={() => {
+                    setMaintenancePlans(
+                      maintenancePlans.map((plan, plansIndex) => {
+                        return selectedItem === plansIndex
+                          ? plan.filter((_, taskIndex) => index !== taskIndex)
+                          : plan;
+                      })
+                    );
+                  }}
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

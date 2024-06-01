@@ -1,8 +1,9 @@
 import machines from "../../../Data/machines";
+import Container from "../../../UI/Container";
 
 const MachineDocuments = () => {
   return (
-    <div>
+    <Container pageTitle={"Veuillez selectioner votre machine"}>
       {/* // todo: you can make it with summary object */}
       {/* Machines name */}
       <div className="list-group mb-6">
@@ -37,7 +38,7 @@ const MachineDocuments = () => {
           </li>
         </ul>
       ))}
-    </div>
+    </Container>
   );
 };
 

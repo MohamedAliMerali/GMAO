@@ -1,10 +1,4 @@
-import { User } from "../../../Data/users";
-
-interface Props {
-  user: User;
-}
-
-const Dashboard = ({ user }: Props) => {
+const Dashboard = () => {
   return <div>Dashboard</div>;
 };
 
