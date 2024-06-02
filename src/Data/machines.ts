@@ -1,29 +1,53 @@
 const machines = [
   {
     name: "Distillateur",
-    MaintenancePlans: [
-      {
-        tasks: "Task 1",
-        responsable: "Admin",
-        delay: "2024-09-04",
-        validation: false,
-        note: "URG",
-      },
-      {
-        tasks: "Task 2",
-        responsable: "Admin",
-        delay: "2024-09-04",
-        validation: false,
-        note: "URG",
-      },
-      {
-        tasks: "Task 3",
-        responsable: "Admin",
-        delay: "2024-09-04",
-        validation: false,
-        note: "URG",
-      },
-    ],
+    MaintenancePlans: {
+      hebdomadaire: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      mensuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      trimestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      semestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      annuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+    },
     documentation: [
       {
         docName: "Fiche de vie de la machine",
@@ -39,15 +63,53 @@ const machines = [
   },
   {
     name: "Réacteur",
-    MaintenancePlans: [
-      {
-        tasks: "Task 1",
-        responsable: "Admin",
-        delay: "2024-09-04",
-        validation: false,
-        note: "URG",
-      },
-    ],
+    MaintenancePlans: {
+      hebdomadaire: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      mensuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      trimestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      semestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      annuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+    },
     documentation: [
       {
         docName: "Fiche de vie de la machine",
@@ -64,15 +126,53 @@ const machines = [
   // ps: make those under this line a comment JUST TO MAKE THING EASSY
   {
     name: "Remplisseuse",
-    MaintenancePlans: [
-      {
-        tasks: "Task 1",
-        responsable: "Admin",
-        delay: "2024-09-04",
-        validation: false,
-        note: "URG",
-      },
-    ],
+    MaintenancePlans: {
+      hebdomadaire: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      mensuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      trimestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      semestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      annuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+    },
     documentation: [
       {
         docName: "Fiche de vie de la machine",
@@ -88,15 +188,53 @@ const machines = [
   },
   {
     name: "Autoclave",
-    MaintenancePlans: [
-      {
-        tasks: "Task 1",
-        responsable: "Admin",
-        delay: "2024-09-04",
-        validation: false,
-        note: "URG",
-      },
-    ],
+    MaintenancePlans: {
+      hebdomadaire: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      mensuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      trimestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      semestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      annuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+    },
     documentation: [
       {
         docName: "Fiche de vie de la machine",
@@ -112,15 +250,53 @@ const machines = [
   },
   {
     name: "Mireuse",
-    MaintenancePlans: [
-      {
-        tasks: "Task 1",
-        responsable: "Admin",
-        delay: "2024-09-04",
-        validation: false,
-        note: "URG",
-      },
-    ],
+    MaintenancePlans: {
+      hebdomadaire: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      mensuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      trimestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      semestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      annuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+    },
     documentation: [
       {
         docName: "Fiche de vie de la machine",
@@ -136,15 +312,53 @@ const machines = [
   },
   {
     name: "Blistireuse",
-    MaintenancePlans: [
-      {
-        tasks: "Task 1",
-        responsable: "Admin",
-        delay: "2024-09-04",
-        validation: false,
-        note: "URG",
-      },
-    ],
+    MaintenancePlans: {
+      hebdomadaire: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      mensuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      trimestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      semestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      annuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+    },
     documentation: [
       {
         docName: "Fiche de vie de la machine",
@@ -160,15 +374,53 @@ const machines = [
   },
   {
     name: "Mis en ètuis",
-    MaintenancePlans: [
-      {
-        tasks: "Task 1",
-        responsable: "Admin",
-        delay: "2024-09-04",
-        validation: false,
-        note: "URG",
-      },
-    ],
+    MaintenancePlans: {
+      hebdomadaire: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      mensuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      trimestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      semestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      annuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+    },
     documentation: [
       {
         docName: "Fiche de vie de la machine",
@@ -184,15 +436,53 @@ const machines = [
   },
   {
     name: "Mise en cartons",
-    MaintenancePlans: [
-      {
-        tasks: "Task 1",
-        responsable: "Admin",
-        delay: "2024-09-04",
-        validation: false,
-        note: "URG",
-      },
-    ],
+    MaintenancePlans: {
+      hebdomadaire: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      mensuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      trimestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      semestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      annuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+    },
     documentation: [
       {
         docName: "Fiche de vie de la machine",
@@ -208,15 +498,53 @@ const machines = [
   },
   {
     name: "Vignetteuse",
-    MaintenancePlans: [
-      {
-        tasks: "Task 1",
-        responsable: "Admin",
-        delay: "2024-09-04",
-        validation: false,
-        note: "URG",
-      },
-    ],
+    MaintenancePlans: {
+      hebdomadaire: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      mensuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      trimestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      semestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      annuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+    },
     documentation: [
       {
         docName: "Fiche de vie de la machine",
@@ -232,15 +560,53 @@ const machines = [
   },
   {
     name: "Imprimante à jet d'encre",
-    MaintenancePlans: [
-      {
-        tasks: "Task 1",
-        responsable: "Admin",
-        delay: "2024-09-04",
-        validation: false,
-        note: "URG",
-      },
-    ],
+    MaintenancePlans: {
+      hebdomadaire: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      mensuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      trimestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      semestriel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+      annuel: [
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
+      ],
+    },
     documentation: [
       {
         docName: "Fiche de vie de la machine",
@@ -258,8 +624,7 @@ const machines = [
 export default machines;
 
 machines.map(() => ({ TBF: 0, MTBF: 0, MTTR: 0, DISP: 0 }));
-
-// to make sure the num of those é objects matches
+// to make sure the num of those objects matches
 const reports = machines.map(() => ({ TBF: 0, MTBF: 0, MTTR: 0, DISP: 0.0 }));
 
 export { reports };

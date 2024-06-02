@@ -12,7 +12,7 @@ function App() {
   const [logged, setLogged] = useState(true);
   const [user, setUser] = useState<User>(users[0]);
   const [userId, setUserId] = useState(0);
-  const [selectedItem, setSelectedItem] = useState(-1);
+  const [selectedItem, setSelectedItem] = useState(1);
 
   const logOut = () => {
     setUser({} as User);

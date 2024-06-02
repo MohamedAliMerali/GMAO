@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
+import { FieldValues, useForm } from "react-hook-form";
 import machines from "../../../Data/machines";
 import { User } from "../../../Data/users";
 import Container from "../../../UI/Container";
-import { FieldValues, useForm } from "react-hook-form";
 
 interface Props {
   user: User;
 }
 
 const MaintenancePlans = ({ user }: Props) => {
-  const [maintenancePlans, setMaintenancePlans] = useState(
-    machines.map((machine) => machine.MaintenancePlans)
-  );
   const [selectedItem, setSelectedItem] = useState(0);
   const [showForm, setShowForm] = useState(false);
   const [minDate, setMinDate] = useState("");
+  const [maintenancePlans, setMaintenancePlans] = useState(
+    machines.map((machine) => machine.MaintenancePlans)
+  );
 
   useEffect(() => {
     const today = new Date();
@@ -29,24 +29,31 @@ const MaintenancePlans = ({ user }: Props) => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data: FieldValues) => {
-    console.log(data);
-    console.log(maintenancePlans[selectedItem]);
-    setMaintenancePlans(
-      maintenancePlans.map((plan, index) => {
-        return selectedItem === index
-          ? [
-              ...plan,
-              {
-                tasks: data.tasks,
-                responsable: data.responsable,
-                delay: data.delay,
-                validation: data.validation,
-                note: data.note,
-              },
-            ]
-          : plan;
-      })
+    if (data.period === "") {
+      // todo: dir error hnaya bah lzm ydir value then allga kfch dir task fi plastou
+      return;
+    }
+    console.log(">> data:", data);
+    console.log(
+      "maintenancePlans[selectedItem]:",
+      maintenancePlans[selectedItem]
     );
+    // setMaintenancePlans(
+    //   maintenancePlans.map((plan, index) => {
+    //     return selectedItem === index
+    //       ? [
+    //           ...plan,
+    //           {
+    //             tasks: data.tasks,
+    //             responsable: data.responsable,
+    //             delay: data.delay,
+    //             validation: data.validation,
+    //             note: data.note,
+    //           },
+    //         ]
+    //       : plan;
+    //   })
+    // );
   };
 
   if (selectedItem === -1)
@@ -100,6 +107,26 @@ const MaintenancePlans = ({ user }: Props) => {
       {showForm ? (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
           <div>
+            <label htmlFor="period">Period</label>
+            <select
+              id="period"
+              {...register("period")}
+              value={""}
+              className="rounded-lg border-none outline-none py-2 px-4 w-full"
+            >
+              <option value="" disabled>
+                Select a maintenance plan
+              </option>
+              {Object.entries(maintenancePlans[selectedItem]).map(
+                ([period, _]) => (
+                  <option key={period} value={period}>
+                    {period}
+                  </option>
+                )
+              )}
+            </select>
+          </div>
+          <div>
             <label htmlFor="tasks">Taches</label>
             <input
               type="text"
@@ -132,33 +159,6 @@ const MaintenancePlans = ({ user }: Props) => {
           </div>
           <div className="space-x-4">
             <label htmlFor="validation">Validation: </label>
-            {/* 
-            <input
-              type="text"
-              id="validation"
-              {...register("validation")}
-              placeholder="Validation..."
-              className="rounded-lg border-none outline-none py-2 px-4 w-full"
-            /> */}
-            {/* <label>
-              <input
-                type="radio"
-                id="validation"
-                value="true"
-                className="form-radio text-blue-600 mr-1"
-              />
-              Vrai
-            </label>
-            <label>
-              <input
-                type="radio"
-                id="validation"
-                value="false"
-                className="form-radio text-blue-600 mr-1"
-              />
-              Faux
-            </label> */}
-
             <input
               id="validation"
               type="radio"
@@ -201,46 +201,42 @@ const MaintenancePlans = ({ user }: Props) => {
       ) : null}
 
       {/* plans Table */}
-      <table className="table table-hover mb-6">
-        <thead>
-          <tr className="table-light">
-            <th scope="col">Les taches</th>
-            <th scope="col">responsable</th>
-            <th scope="col">Dernier délais</th>
-            <th scope="col">Validation</th>
-            <th scope="col">Remarque</th>
-            <th scope="col">Controle</th>
-          </tr>
-        </thead>
-        <tbody>
-          {maintenancePlans[selectedItem].map((plan, index) => (
-            <tr key={index} className="table-secondary">
-              <td scope="row">{plan.tasks}</td>
-              <td scope="row">{plan.responsable}</td>
-              <td scope="row">{plan.delay}</td>
-              <td scope="row">{plan.validation}</td>
-              <td scope="row">{plan.note}</td>
-              <td scope="row">
-                <button
-                  type="button"
-                  className="btn btn-outline-danger"
-                  onClick={() => {
-                    setMaintenancePlans(
-                      maintenancePlans.map((plan, plansIndex) => {
-                        return selectedItem === plansIndex
-                          ? plan.filter((_, taskIndex) => index !== taskIndex)
-                          : plan;
-                      })
-                    );
-                  }}
-                >
-                  Delete
-                </button>
-              </td>
+      {Object.entries(maintenancePlans[selectedItem]).map(([period, tasks]) => (
+        <table key={period} className="table table-hover mb-5">
+          <thead>
+            <tr className="table-light">
+              <th colSpan={6} className="text-center">
+                {period.toUpperCase()}
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+            <tr className="table-light">
+              <th scope="col">Les taches</th>
+              <th scope="col">responsable</th>
+              <th scope="col">Dernier délais</th>
+              <th scope="col">Validation</th>
+              <th scope="col">Remarque</th>
+              <th scope="col">Controle</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tasks.map((plan, taskIndex) => (
+              <tr key={taskIndex}>
+                <td>{plan.tasks}</td>
+                <td>{plan.responsable}</td>
+                <td>{plan.delay}</td>
+                <td>{plan.validation}</td>
+                <td>{plan.note}</td>
+                <td>
+                  {" "}
+                  <button type="button" className="btn btn-outline-danger">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ))}
     </Container>
   );
 };
