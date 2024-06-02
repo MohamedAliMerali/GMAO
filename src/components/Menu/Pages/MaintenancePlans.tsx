@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import machines from "../../../Data/machines";
+import machines, {
+  MaintenancePlansInterface,
+  Task,
+} from "../../../Data/machines";
 import { User } from "../../../Data/users";
 import Container from "../../../UI/Container";
 
@@ -30,30 +33,38 @@ const MaintenancePlans = ({ user }: Props) => {
 
   const onSubmit = (data: FieldValues) => {
     if (data.period === "") {
+      console.log("error in data");
       // todo: dir error hnaya bah lzm ydir value then allga kfch dir task fi plastou
       return;
     }
     console.log(">> data:", data);
+    console.log(">> data.period:", data.period);
+    const KEY = data.period as keyof MaintenancePlansInterface;
+
     console.log(
       "maintenancePlans[selectedItem]:",
       maintenancePlans[selectedItem]
     );
-    // setMaintenancePlans(
-    //   maintenancePlans.map((plan, index) => {
-    //     return selectedItem === index
-    //       ? [
-    //           ...plan,
-    //           {
-    //             tasks: data.tasks,
-    //             responsable: data.responsable,
-    //             delay: data.delay,
-    //             validation: data.validation,
-    //             note: data.note,
-    //           },
-    //         ]
-    //       : plan;
-    //   })
-    // );
+    setMaintenancePlans(
+      maintenancePlans.map((plan, planIndex) => {
+        const currentTasks: Task[] = Array.isArray(plan[KEY]) ? plan[KEY] : [];
+        return selectedItem === planIndex
+          ? {
+              ...plan,
+              [data.period]: [
+                ...(currentTasks || []),
+                {
+                  tasks: data.tasks,
+                  responsable: data.responsable,
+                  delay: data.delay,
+                  validation: data.validation,
+                  note: data.note,
+                },
+              ],
+            }
+          : plan;
+      })
+    );
   };
 
   if (selectedItem === -1)
@@ -111,14 +122,13 @@ const MaintenancePlans = ({ user }: Props) => {
             <select
               id="period"
               {...register("period")}
-              value={""}
               className="rounded-lg border-none outline-none py-2 px-4 w-full"
             >
               <option value="" disabled>
                 Select a maintenance plan
               </option>
               {Object.entries(maintenancePlans[selectedItem]).map(
-                ([period, _]) => (
+                ([period]) => (
                   <option key={period} value={period}>
                     {period}
                   </option>

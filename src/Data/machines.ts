@@ -1,4 +1,26 @@
-const machines = [
+export interface Task {
+  tasks: string;
+  responsable: string;
+  delay: string;
+  validation: boolean;
+  note: string;
+}
+
+export interface MaintenancePlansInterface {
+  hebdomadaire: Task[];
+  mensuel: Task[];
+  trimestriel: Task[];
+  semestriel: Task[];
+  annuel: Task[];
+}
+
+interface Machine {
+  name: string;
+  MaintenancePlans: MaintenancePlansInterface;
+  documentation: { docName: string; content: string }[];
+}
+
+const machines: Machine[] = [
   {
     name: "Distillateur",
     MaintenancePlans: {

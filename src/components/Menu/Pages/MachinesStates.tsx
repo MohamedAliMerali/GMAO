@@ -5,7 +5,7 @@ import machines, { reports as importedReport } from "../../../Data/machines";
 
 const MachinesStates = () => {
   const { register, handleSubmit } = useForm();
-  const [valuesError, setValuesError] = useState(true);
+  const [valuesError, setValuesError] = useState(false);
   const [reports, setReports] = useState(importedReport);
   const [history, setHistory] = useState(
     machines.map(() => ({ TBF: 0, breakDuration_: 0 }))
