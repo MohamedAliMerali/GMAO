@@ -32,6 +32,13 @@ const machines: Machine[] = [
           validation: false,
           note: "URG",
         },
+        {
+          tasks: "Task 1",
+          responsable: "Admin",
+          delay: "2024-09-04",
+          validation: false,
+          note: "URG",
+        },
       ],
       mensuel: [
         {
@@ -145,7 +152,6 @@ const machines: Machine[] = [
       },
     ],
   },
-  // ps: make those under this line a comment JUST TO MAKE THING EASSY
   {
     name: "Remplisseuse",
     MaintenancePlans: {

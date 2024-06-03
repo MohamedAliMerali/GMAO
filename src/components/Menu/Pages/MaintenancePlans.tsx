@@ -12,8 +12,9 @@ interface Props {
 }
 
 const MaintenancePlans = ({ user }: Props) => {
-  const [selectedItem, setSelectedItem] = useState(0);
+  const [selectedItem, setSelectedItem] = useState(2);
   const [showForm, setShowForm] = useState(false);
+  const [error, setError] = useState(false);
   const [minDate, setMinDate] = useState("");
   const [maintenancePlans, setMaintenancePlans] = useState(
     machines.map((machine) => machine.MaintenancePlans)
@@ -31,20 +32,32 @@ const MaintenancePlans = ({ user }: Props) => {
 
   const { register, handleSubmit } = useForm();
 
+  let PLANS = Object.entries(maintenancePlans[0]).map(
+    ([editedPeriod, oldTask]) => {
+      return editedPeriod === "MaintenancePlans"
+        ? { [editedPeriod]: oldTask }
+        : { [editedPeriod]: oldTask };
+    }
+  );
+  // console.log(PLANS);
+
+  PLANS = Object.assign(
+    {},
+    ...Object.entries(maintenancePlans[0]).map(([editedPeriod, oldTask]) => ({
+      [editedPeriod]: editedPeriod === "MaintenancePlans" ? oldTask : oldTask,
+    }))
+  );
+  console.log(PLANS);
+
   const onSubmit = (data: FieldValues) => {
     if (data.period === "") {
       console.log("error in data");
-      // todo: dir error hnaya bah lzm ydir value then allga kfch dir task fi plastou
+      setError(true);
       return;
     }
-    console.log(">> data:", data);
-    console.log(">> data.period:", data.period);
-    const KEY = data.period as keyof MaintenancePlansInterface;
+    setError(false);
 
-    console.log(
-      "maintenancePlans[selectedItem]:",
-      maintenancePlans[selectedItem]
-    );
+    const KEY = data.period as keyof MaintenancePlansInterface;
     setMaintenancePlans(
       maintenancePlans.map((plan, planIndex) => {
         const currentTasks: Task[] = Array.isArray(plan[KEY]) ? plan[KEY] : [];
@@ -67,6 +80,9 @@ const MaintenancePlans = ({ user }: Props) => {
     );
   };
 
+  // const onDelete = (deleteIndex: number) => {};
+
+  //
   if (selectedItem === -1)
     return (
       <Container pageTitle={"Vou trouvez les plans de maintenances:"}>
@@ -124,8 +140,8 @@ const MaintenancePlans = ({ user }: Props) => {
               {...register("period")}
               className="rounded-lg border-none outline-none py-2 px-4 w-full"
             >
-              <option value="" disabled>
-                Select a maintenance plan
+              <option value="" selected disabled>
+                Sélectionnez un plan de maintenance
               </option>
               {Object.entries(maintenancePlans[selectedItem]).map(
                 ([period]) => (
@@ -135,6 +151,9 @@ const MaintenancePlans = ({ user }: Props) => {
                 )
               )}
             </select>
+            {error ? (
+              <p className="text-danger">Sélectionnez un plan de maintenance</p>
+            ) : null}
           </div>
           <div>
             <label htmlFor="tasks">Taches</label>
@@ -225,23 +244,52 @@ const MaintenancePlans = ({ user }: Props) => {
               <th scope="col">Dernier délais</th>
               <th scope="col">Validation</th>
               <th scope="col">Remarque</th>
-              <th scope="col">Controle</th>
+              {/* <th scope="col">Controle</th> */}
             </tr>
           </thead>
           <tbody>
-            {tasks.map((plan, taskIndex) => (
+            {/* {console.log("tasks", tasks)} => [{...}] */}
+            {tasks.map((plan: Task, taskIndex: number) => (
               <tr key={taskIndex}>
                 <td>{plan.tasks}</td>
                 <td>{plan.responsable}</td>
                 <td>{plan.delay}</td>
                 <td>{plan.validation}</td>
                 <td>{plan.note}</td>
-                <td>
+                {/* <td>
                   {" "}
-                  <button type="button" className="btn btn-outline-danger">
+                  <button
+                    type="button"
+                    className="btn btn-outline-danger"
+                    onClick={() => {
+                      const newMaintenancePlans = maintenancePlans.map(
+                        (plan, planIndex) => {
+                          if (selectedItem === planIndex) {
+                            const updatedTasks = Object.assign(
+                              {},
+                              ...Object.entries(plan).map(
+                                ([editedPeriod, oldTask]) => ({
+                                  [editedPeriod]:
+                                    editedPeriod === period ? null : oldTask,
+                                })
+                              )
+                            );
+
+                            return updatedTasks;
+                          }
+                          return plan;
+                        }
+                      );
+                      console.log(
+                        ">> newMaintenancePlans:",
+                        newMaintenancePlans
+                      );
+                      setMaintenancePlans(newMaintenancePlans);
+                    }}
+                  >
                     Delete
                   </button>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>
