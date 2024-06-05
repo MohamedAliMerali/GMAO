@@ -14,11 +14,19 @@ import { IoDocuments } from "react-icons/io5";
 import { FaScrewdriverWrench } from "react-icons/fa6";
 import { BsFillMotherboardFill } from "react-icons/bs";
 
+export interface History {
+  TBF: number;
+  breakDuration_: number;
+}
 // Define the type for the menu items
 interface MenuItem {
   item: string;
   icon: ReactNode;
-  component: (user: User) => React.ReactNode;
+  component: (
+    user: User,
+    history: History[],
+    setHistory: (history: History[]) => void
+  ) => React.ReactNode;
 }
 
 // Create and export the menu array
@@ -36,7 +44,9 @@ export const menuItems: MenuItem[] = [
   {
     item: "Etat des machines",
     icon: <IoIosSpeedometer />,
-    component: () => <MachinesStates />,
+    component: (_, history, setHistory) => (
+      <MachinesStates history={history} setHistory={setHistory} />
+    ),
   },
   {
     item: "Documents machines",
@@ -51,6 +61,6 @@ export const menuItems: MenuItem[] = [
   {
     item: "Reporting & Dashboard",
     icon: <BsFillMotherboardFill />,
-    component: () => <Dashboard />,
+    component: (_, history) => <Dashboard history={history} />,
   },
 ];

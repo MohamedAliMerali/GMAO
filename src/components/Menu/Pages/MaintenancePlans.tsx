@@ -32,22 +32,22 @@ const MaintenancePlans = ({ user }: Props) => {
 
   const { register, handleSubmit } = useForm();
 
-  let PLANS = Object.entries(maintenancePlans[0]).map(
-    ([editedPeriod, oldTask]) => {
-      return editedPeriod === "MaintenancePlans"
-        ? { [editedPeriod]: oldTask }
-        : { [editedPeriod]: oldTask };
-    }
-  );
-  // console.log(PLANS);
+  // let PLANS = Object.entries(maintenancePlans[0]).map(
+  //   ([editedPeriod, oldTask]) => {
+  //     return editedPeriod === "MaintenancePlans"
+  //       ? { [editedPeriod]: oldTask }
+  //       : { [editedPeriod]: oldTask };
+  //   }
+  // );
+  // // console.log(PLANS);
 
-  PLANS = Object.assign(
-    {},
-    ...Object.entries(maintenancePlans[0]).map(([editedPeriod, oldTask]) => ({
-      [editedPeriod]: editedPeriod === "MaintenancePlans" ? oldTask : oldTask,
-    }))
-  );
-  console.log(PLANS);
+  // PLANS = Object.assign(
+  //   {},
+  //   ...Object.entries(maintenancePlans[0]).map(([editedPeriod, oldTask]) => ({
+  //     [editedPeriod]: editedPeriod === "MaintenancePlans" ? oldTask : oldTask,
+  //   }))
+  // );
+  // // console.log(PLANS);
 
   const onSubmit = (data: FieldValues) => {
     if (data.period === "") {

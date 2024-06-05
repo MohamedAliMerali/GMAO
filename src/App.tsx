@@ -2,17 +2,17 @@ import { useState } from "react";
 import { VscTriangleRight } from "react-icons/vsc";
 import "./App.css";
 import LogIn from "./components/LogIn";
+import Bar from "./components/Bar";
+import Welcome from "./components/Welcome";
 import Menu from "./components/Menu";
 import { menuItems } from "./Data/menuItems";
 import users, { User } from "./Data/users";
-import Bar from "./components/Bar";
-import Welcome from "./components/Welcome";
 
 function App() {
   const [logged, setLogged] = useState(true);
   const [user, setUser] = useState<User>(users[0]);
   const [userId, setUserId] = useState(0);
-  const [selectedItem, setSelectedItem] = useState(1);
+  const [selectedItem, setSelectedItem] = useState(5);
 
   const logOut = () => {
     setUser({} as User);

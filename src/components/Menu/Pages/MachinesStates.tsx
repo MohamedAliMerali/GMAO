@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import Container from "../../../UI/Container";
 import machines, { reports as importedReport } from "../../../Data/machines";
-
-const MachinesStates = () => {
+import { History } from "../../../Data/menuItems";
+import Container from "../../../UI/Container";
+interface Props {
+  history: History[];
+  setHistory: (history: History[]) => void;
+}
+const MachinesStates = ({ history, setHistory }: Props) => {
   const { register, handleSubmit } = useForm();
   const [valuesError, setValuesError] = useState(false);
   const [reports, setReports] = useState(importedReport);
-  const [history, setHistory] = useState(
-    machines.map(() => ({ TBF: 0, breakDuration_: 0 }))
-  );
 
   // Todo add history section down below
   const onSubmit = (data: FieldValues) => {
@@ -33,7 +34,6 @@ const MachinesStates = () => {
     }
 
     const newHistory = history.map((histItem, index) => ({
-      // TBF: item.TBF + newReports[index].TBF,
       TBF:
         histItem.TBF +
         parseInt(data["WorkHours_" + index]) -
@@ -75,20 +75,13 @@ const MachinesStates = () => {
 
     setReports(newReports);
     setHistory(newHistory);
+    localStorage.setItem("TBFhistory", JSON.stringify(newHistory));
 
     // debug
     console.log(">> newReports:", newReports);
     console.log(">> newHistory:", newHistory);
     console.log(">> history:", history);
   };
-
-  {
-    /* 
-  "WorkHours_" + index
-  "numPanne_" + index
-  "breakDuration_" + index 
-  */
-  }
 
   return (
     <Container pageTitle={"Veuillez remplir les données d'aujourd'hui "}>
