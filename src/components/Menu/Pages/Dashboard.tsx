@@ -1,44 +1,48 @@
-import { PieChart } from "@mui/x-charts/PieChart";
 import { History } from "../../../Data/menuItems";
-import {
-  Gauge,
-  GaugeContainer,
-  GaugeReferenceArc,
-  GaugeValueArc,
-  useGaugeState,
-} from "@mui/x-charts";
+// import { PieChart } from "@mui/x-charts/PieChart";
+// import {
+//   Gauge,
+//   GaugeContainer,
+//   GaugeReferenceArc,
+//   GaugeValueArc,
+//   useGaugeState,
+// } from "@mui/x-charts";
 
 interface Props {
   history: History[];
 }
-function GaugePointer() {
-  const { valueAngle, outerRadius, cx, cy } = useGaugeState();
 
-  if (valueAngle === null) {
-    // No value to display
-    return null;
-  }
+// function GaugePointer() {
+//   const { valueAngle, outerRadius, cx, cy } = useGaugeState();
 
-  const target = {
-    x: cx + outerRadius * Math.sin(valueAngle),
-    y: cy - outerRadius * Math.cos(valueAngle),
-  };
-  return (
-    <g>
-      <circle cx={cx} cy={cy} r={5} fill="red" />
-      <path
-        d={`M ${cx} ${cy} L ${target.x} ${target.y}`}
-        stroke="red"
-        strokeWidth={3}
-      />
-    </g>
-  );
-}
+//   if (valueAngle === null) {
+//     // No value to display
+//     return null;
+//   }
+
+//   const target = {
+//     x: cx + outerRadius * Math.sin(valueAngle),
+//     y: cy - outerRadius * Math.cos(valueAngle),
+//   };
+//   return (
+//     <g>
+//       <circle cx={cx} cy={cy} r={5} fill="red" />
+//       <path
+//         d={`M ${cx} ${cy} L ${target.x} ${target.y}`}
+//         stroke="red"
+//         strokeWidth={3}
+//       />
+//     </g>
+//   );
+// }
+
+// todo: make a check box to select the machine that you want to show
+
 const Dashboard = ({ history }: Props) => {
   console.log(history);
   return (
     <div>
-      <PieChart
+      {/* <PieChart
         series={[
           {
             data: [
@@ -92,7 +96,7 @@ const Dashboard = ({ history }: Props) => {
         <GaugeReferenceArc />
         <GaugeValueArc />
         <GaugePointer />
-      </GaugeContainer>
+      </GaugeContainer> */}
     </div>
   );
 };

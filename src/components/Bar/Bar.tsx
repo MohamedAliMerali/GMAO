@@ -2,7 +2,7 @@ import { useState } from "react";
 import { User } from "../../Data/users";
 import saidal from "../../assets/saidal.png";
 import { GiHamburgerMenu } from "react-icons/gi";
-import getProfileAvatar from "./avatar";
+import userAvatar from "../../assets/profileAvatar.jpg";
 
 interface Props {
   user: User;
@@ -35,7 +35,9 @@ const Bar = ({ user, userId, logOut }: Props) => {
         <ul className="list-group">
           <li className="list-group-item">
             <img
-              src={getProfileAvatar(userId)}
+              // ? change this to the path you find in the deployment code
+              // just to test
+              src={userAvatar}
               alt="profile Avatar"
               className="w-24 rounded-full mx-auto"
             />
@@ -43,7 +45,7 @@ const Bar = ({ user, userId, logOut }: Props) => {
           <li className="list-group-item">Name: {user.name}</li>
           <li className="list-group-item">Type: {user.type}</li>
           <li className="list-group-item">
-            Authorizations:
+            Authorizations:np
             <ul className="list-group">
               {user.authorizations.map((auth, index) => (
                 <li key={index} className="list-group-item mr-1">
