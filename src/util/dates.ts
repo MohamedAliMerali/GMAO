@@ -5,3 +5,24 @@ export const getCurrentFormattedDate = (): string => {
   const year = date.getFullYear();
   return `${day}/${month}/${year}`;
 };
+
+export const LastDays = (NDay: number): string[] => {
+  const days = [];
+  const date = new Date();
+
+  for (let index = 0; index < NDay; index++) {
+    const currentDate = new Date();
+    currentDate.setDate(date.getDate() - index);
+
+    const day = String(currentDate.getDate()).padStart(2, "0");
+    const month = currentDate
+      .toLocaleString("default", { month: "short" })
+      .toLowerCase();
+
+    days.unshift(`${day}-${month}`);
+  }
+
+  return days;
+};
+
+console.log(LastDays(10));

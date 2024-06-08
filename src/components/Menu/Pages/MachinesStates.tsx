@@ -7,18 +7,54 @@ interface Props {
   history: History[];
   setHistory: (history: History[]) => void;
 }
+
+const getTBF = (data: FieldValues, index: number): number => {
+  return (
+    parseInt(data["WorkHours_" + index]) -
+    parseInt(data["breakDuration_" + index])
+  );
+};
+const getMTBF = (
+  data: FieldValues,
+  newHistory: History[],
+  index: number
+): number => {
+  return data["numPanne_" + index] === 0
+    ? 0
+    : newHistory[index]["TBF"] / data["numPanne_" + index];
+};
+const getMTTR = (
+  data: FieldValues,
+  newHistory: History[],
+  index: number
+): number => {
+  return data["numPanne_" + index] === 0
+    ? 0
+    : newHistory[index]["breakDuration_"] / data["numPanne_" + index];
+};
+const getDISP = (
+  data: FieldValues,
+  newHistory: History[],
+  index: number
+): number => {
+  return getMTTR(data, newHistory, index) + getMTBF(data, newHistory, index) ===
+    0
+    ? 100
+    : (getMTBF(data, newHistory, index) /
+        (getMTTR(data, newHistory, index) + getMTBF(data, newHistory, index))) *
+        100;
+};
+
 const MachinesStates = ({ history, setHistory }: Props) => {
   const { register, handleSubmit } = useForm();
   const [valuesError, setValuesError] = useState(false);
   const [reports, setReports] = useState(importedReport);
 
-  // Todo add history section down below
   const onSubmit = (data: FieldValues) => {
     // parsing data from strings into integers
     Object.entries(data).forEach(([key, value]) => {
       data[key] = parseInt(value);
     });
-    console.log(">> data  ", data);
 
     // check if all numbers are provied
     for (let index = 0; index < data.length; index++) {
@@ -33,54 +69,36 @@ const MachinesStates = ({ history, setHistory }: Props) => {
       }
     }
 
-    const newHistory = history.map((histItem, index) => ({
-      TBF:
-        histItem.TBF +
-        parseInt(data["WorkHours_" + index]) -
-        parseInt(data["breakDuration_" + index]),
-      breakDuration_:
-        histItem.breakDuration_ + parseInt(data["breakDuration_" + index]),
-    }));
+    const newHistory: History[] = history.map((histItem, index) => {
+      return {
+        ...histItem,
+        TBF: histItem.TBF + getTBF(data, index),
+        breakDuration_:
+          histItem.breakDuration_ + parseInt(data["breakDuration_" + index]),
+        //  can't access 'newHistory' before initialization
+        // DISPHist: [
+        //   ...histItem.DISPHist,
+        //   parseFloat(getDISP(data, newHistory, index).toFixed(2)),
+        // ],
+      };
+    });
 
     // making the new report
     // we used a new var so we can use the new values in history
     const newReports = reports.map((_, index) => {
-      const tbf =
-        parseInt(data["WorkHours_" + index]) -
-        parseInt(data["breakDuration_" + index]);
-
-      // ? check here ig you need an interface to access the properties of data
-      const mtbf =
-        data["numPanne_" + index] === 0
-          ? 0
-          : newHistory[index]["TBF"] / data["numPanne_" + index];
-      const mttr =
-        data["numPanne_" + index] === 0
-          ? 0
-          : newHistory[index]["breakDuration_"] / data["numPanne_" + index];
-      const disp = mttr + mtbf === 0 ? 100 : (mtbf / (mttr + mtbf)) * 100;
-      // const disp =
-      //   data["MTBF"] + data["MTTR"] === 0
-      //     ? 100
-      //     : (reports[index]["MTBF"] /
-      //         (reports[index]["MTBF"] + reports[index]["MTTR"])) *
-      //       100;
+      const disp = parseFloat(getDISP(data, newHistory, index).toFixed(2));
+      newHistory[index].DISPHist = [...newHistory[index].DISPHist, disp];
       return {
-        TBF: tbf,
-        MTBF: mtbf,
-        MTTR: mttr,
-        DISP: parseFloat(disp.toFixed(2)),
+        TBF: parseFloat(getTBF(data, index).toFixed(2)),
+        MTBF: parseFloat(getMTBF(data, newHistory, index).toFixed(2)),
+        MTTR: parseFloat(getMTTR(data, newHistory, index).toFixed(2)),
+        DISP: disp,
       };
     });
 
     setReports(newReports);
     setHistory(newHistory);
     localStorage.setItem("TBFhistory", JSON.stringify(newHistory));
-
-    // debug
-    console.log(">> newReports:", newReports);
-    console.log(">> newHistory:", newHistory);
-    console.log(">> history:", history);
   };
 
   return (

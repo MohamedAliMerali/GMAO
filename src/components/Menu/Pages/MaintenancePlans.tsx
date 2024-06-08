@@ -12,13 +12,14 @@ interface Props {
 }
 
 const MaintenancePlans = ({ user }: Props) => {
-  const [selectedItem, setSelectedItem] = useState(2);
+  const [selectedItem, setSelectedItem] = useState(0);
   const [showForm, setShowForm] = useState(false);
   const [error, setError] = useState(false);
   const [minDate, setMinDate] = useState("");
   const [maintenancePlans, setMaintenancePlans] = useState(
     machines.map((machine) => machine.MaintenancePlans)
   );
+  const { register, handleSubmit } = useForm();
 
   useEffect(() => {
     const today = new Date();
@@ -29,25 +30,6 @@ const MaintenancePlans = ({ user }: Props) => {
     const day = tomorrow.getDate().toString().padStart(2, "0");
     setMinDate(`${year}-${month}-${day}`);
   }, []);
-
-  const { register, handleSubmit } = useForm();
-
-  // let PLANS = Object.entries(maintenancePlans[0]).map(
-  //   ([editedPeriod, oldTask]) => {
-  //     return editedPeriod === "MaintenancePlans"
-  //       ? { [editedPeriod]: oldTask }
-  //       : { [editedPeriod]: oldTask };
-  //   }
-  // );
-  // // console.log(PLANS);
-
-  // PLANS = Object.assign(
-  //   {},
-  //   ...Object.entries(maintenancePlans[0]).map(([editedPeriod, oldTask]) => ({
-  //     [editedPeriod]: editedPeriod === "MaintenancePlans" ? oldTask : oldTask,
-  //   }))
-  // );
-  // // console.log(PLANS);
 
   const onSubmit = (data: FieldValues) => {
     if (data.period === "") {
@@ -80,9 +62,6 @@ const MaintenancePlans = ({ user }: Props) => {
     );
   };
 
-  // const onDelete = (deleteIndex: number) => {};
-
-  //
   if (selectedItem === -1)
     return (
       <Container pageTitle={"Vou trouvez les plans de maintenances:"}>
@@ -256,40 +235,6 @@ const MaintenancePlans = ({ user }: Props) => {
                 <td>{plan.delay}</td>
                 <td>{plan.validation}</td>
                 <td>{plan.note}</td>
-                {/* <td>
-                  {" "}
-                  <button
-                    type="button"
-                    className="btn btn-outline-danger"
-                    onClick={() => {
-                      const newMaintenancePlans = maintenancePlans.map(
-                        (plan, planIndex) => {
-                          if (selectedItem === planIndex) {
-                            const updatedTasks = Object.assign(
-                              {},
-                              ...Object.entries(plan).map(
-                                ([editedPeriod, oldTask]) => ({
-                                  [editedPeriod]:
-                                    editedPeriod === period ? null : oldTask,
-                                })
-                              )
-                            );
-
-                            return updatedTasks;
-                          }
-                          return plan;
-                        }
-                      );
-                      console.log(
-                        ">> newMaintenancePlans:",
-                        newMaintenancePlans
-                      );
-                      setMaintenancePlans(newMaintenancePlans);
-                    }}
-                  >
-                    Delete
-                  </button>
-                </td> */}
               </tr>
             ))}
           </tbody>

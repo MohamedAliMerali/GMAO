@@ -1,47 +1,48 @@
+import { LineChart } from "@mui/x-charts";
 import { History } from "../../../Data/menuItems";
-// import { PieChart } from "@mui/x-charts/PieChart";
-// import {
-//   Gauge,
-//   GaugeContainer,
-//   GaugeReferenceArc,
-//   GaugeValueArc,
-//   useGaugeState,
-// } from "@mui/x-charts";
+import { LastDays } from "../../../util/dates";
 
 interface Props {
   history: History[];
 }
 
-// function GaugePointer() {
-//   const { valueAngle, outerRadius, cx, cy } = useGaugeState();
-
-//   if (valueAngle === null) {
-//     // No value to display
-//     return null;
-//   }
-
-//   const target = {
-//     x: cx + outerRadius * Math.sin(valueAngle),
-//     y: cy - outerRadius * Math.cos(valueAngle),
-//   };
-//   return (
-//     <g>
-//       <circle cx={cx} cy={cy} r={5} fill="red" />
-//       <path
-//         d={`M ${cx} ${cy} L ${target.x} ${target.y}`}
-//         stroke="red"
-//         strokeWidth={3}
-//       />
-//     </g>
-//   );
-// }
-
-// todo: make a check box to select the machine that you want to show
-
 const Dashboard = ({ history }: Props) => {
-  console.log(history);
+  const DAYS = 10;
+  const xaxis = [];
+  for (let index = 0; index < DAYS; index++) {
+    xaxis.push(index);
+  }
+  console.log(LastDays(DAYS));
+
   return (
     <div>
+      {/* you can add two disp, last one and average disp */}
+      <LineChart
+        xAxis={[
+          {
+            scaleType: "point",
+            dataKey: "day",
+            data: LastDays(DAYS),
+            valueFormatter: (day, context) =>
+              context.location === "tick" ? `${day.slice(0, 6)}` : `${day}`,
+          },
+        ]}
+        series={history.map((histItem) => {
+          return {
+            curve: "monotoneX",
+            data: histItem.DISPHist.slice(-DAYS),
+            label: histItem.machineName,
+          };
+        })}
+        height={500}
+        margin={{ left: 30, right: 30, top: 30, bottom: 30 }}
+        grid={{ vertical: true, horizontal: true }}
+      />
+      {/* // series={[
+        //   { curve: "monotoneX", data: [0, 5, 2, 6, 3, 9.3], label: "Series 1" },
+        //   { curve: "monotoneX", data: [2, 4, 2, 3, 5, 9.3], label: "Series 2" },
+        //   { curve: "monotoneX", data: [6, 3, 7, 9.5, 4, 2], label: "Series 3" },
+        // ]} */}
       {/* <PieChart
         series={[
           {
@@ -102,3 +103,29 @@ const Dashboard = ({ history }: Props) => {
 };
 
 export default Dashboard;
+
+// function GaugePointer() {
+//   const { valueAngle, outerRadius, cx, cy } = useGaugeState();
+
+//   if (valueAngle === null) {
+//     // No value to display
+// return null;
+//   }
+
+//   const target = {
+//     x: cx + outerRadius * Math.sin(valueAngle),
+//     y: cy - outerRadius * Math.cos(valueAngle),
+//   };
+//   return (
+//     <g>
+//       <circle cx={cx} cy={cy} r={5} fill="red" />
+//       <path
+//         d={`M ${cx} ${cy} L ${target.x} ${target.y}`}
+//         stroke="red"
+//         strokeWidth={3}
+//       />
+//     </g>
+//   );
+// }
+
+// todo: make a check box to select the machine that you want to show

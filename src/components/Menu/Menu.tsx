@@ -12,8 +12,14 @@ interface Props {
 
 const Menu = ({ user, itemNum }: Props) => {
   const [history, setHistory] = useState(
-    machines.map(() => ({ TBF: 0, breakDuration_: 0 }))
+    machines.map((machineItem) => ({
+      machineName: machineItem.name,
+      TBF: 0,
+      breakDuration_: 0,
+      DISPHist: [] as number[],
+    }))
   );
+
   useEffect(() => {
     const storedItem = localStorage.getItem("TBFhistory");
     if (storedItem) {

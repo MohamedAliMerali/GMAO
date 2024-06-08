@@ -11,7 +11,7 @@ import users, { User } from "./Data/users";
 function App() {
   const [logged, setLogged] = useState(true);
   const [user, setUser] = useState<User>(users[0]);
-  const [userId, setUserId] = useState(0);
+  const [, setUserId] = useState(0);
   const [selectedItem, setSelectedItem] = useState(5);
 
   const logOut = () => {
@@ -27,7 +27,7 @@ function App() {
 
   return (
     <div className="flex flex-col h-screen">
-      <Bar user={user} userId={userId} logOut={logOut} />
+      <Bar user={user} logOut={logOut} />
       <div className="flex flex-1">
         {/* menu */}
         <div className="w-full max-w-sm bg-stone-600 md:max-w-md lg:max-w-xl">

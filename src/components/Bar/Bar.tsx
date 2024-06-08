@@ -6,10 +6,9 @@ import userAvatar from "../../assets/profileAvatar.jpg";
 
 interface Props {
   user: User;
-  userId: number;
   logOut: () => void;
 }
-const Bar = ({ user, userId, logOut }: Props) => {
+const Bar = ({ user, logOut }: Props) => {
   const [showUserInfo, setShowUserInfo] = useState(false);
   return (
     <div className="py-2 px-6 flex flex-row justify-between items-center">

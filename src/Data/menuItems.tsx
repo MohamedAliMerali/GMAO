@@ -15,8 +15,10 @@ import { FaScrewdriverWrench } from "react-icons/fa6";
 import { BsFillMotherboardFill } from "react-icons/bs";
 
 export interface History {
+  machineName: string;
   TBF: number;
   breakDuration_: number;
+  DISPHist: number[];
 }
 // Define the type for the menu items
 interface MenuItem {
