@@ -12,7 +12,7 @@ interface Props {
 }
 
 const MaintenancePlans = ({ user }: Props) => {
-  const [selectedItem, setSelectedItem] = useState(0);
+  const [selectedItem, setSelectedItem] = useState(-1);
   const [showForm, setShowForm] = useState(false);
   const [error, setError] = useState(false);
   const [minDate, setMinDate] = useState("");

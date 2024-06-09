@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { menuItems } from "../../Data/menuItems";
 import { User } from "../../Data/users";
 import machines from "../../Data/machines";
@@ -9,28 +9,49 @@ interface Props {
   user: User;
   itemNum: number;
 }
-
-const Menu = ({ user, itemNum }: Props) => {
-  const [history, setHistory] = useState(
-    machines.map((machineItem) => ({
+const getInitialHistory = () => {
+  const storedItem = localStorage.getItem("TBFhistory");
+  if (storedItem) {
+    return JSON.parse(storedItem);
+  } else {
+    const initialHistory = machines.map((machineItem) => ({
       machineName: machineItem.name,
       TBF: 0,
       breakDuration_: 0,
       DISPHist: [] as number[],
-    }))
-  );
+    }));
+    localStorage.setItem("TBFhistory", JSON.stringify(initialHistory));
+    return initialHistory;
+  }
+};
 
-  useEffect(() => {
-    const storedItem = localStorage.getItem("TBFhistory");
-    if (storedItem) {
-      setHistory(JSON.parse(storedItem));
-    } else {
-      localStorage.setItem("TBFhistory", JSON.stringify(history));
-      // setHistory([] as History[]);
-    }
-  }, []);
+const Menu = ({ user, itemNum }: Props) => {
+  const [history, setHistory] = useState(() => getInitialHistory());
 
   return menuItems[itemNum].component(user, history, setHistory);
 };
+
+// const Menu = ({ user, itemNum }: Props) => {
+//   const [history, setHistory] = useState(
+//     machines.map((machineItem) => ({
+//       machineName: machineItem.name,
+//       TBF: 0,
+//       breakDuration_: 0,
+//       DISPHist: [] as number[],
+//     }))
+//   );
+
+//   useEffect(() => {
+//     const storedItem = localStorage.getItem("TBFhistory");
+//     if (storedItem) {
+//       setHistory(JSON.parse(storedItem));
+//     } else {
+//       localStorage.setItem("TBFhistory", JSON.stringify(history));
+//       // setHistory([] as History[]);
+//     }
+//   }, []);
+
+//   return menuItems[itemNum].component(user, history, setHistory);
+// };
 
 export default Menu;

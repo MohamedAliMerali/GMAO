@@ -44,13 +44,17 @@ const Bar = ({ user, logOut }: Props) => {
           <li className="list-group-item">Name: {user.name}</li>
           <li className="list-group-item">Type: {user.type}</li>
           <li className="list-group-item">
-            Authorizations:np
+            Authorizations:
             <ul className="list-group">
-              {user.authorizations.map((auth, index) => (
-                <li key={index} className="list-group-item mr-1">
-                  - {auth}
-                </li>
-              ))}
+              {user.authorizations.length === 0 ? (
+                <li className="ml-4">None</li>
+              ) : (
+                user.authorizations.map((auth, index) => (
+                  <li key={index} className="list-group-item mr-1">
+                    - {auth}
+                  </li>
+                ))
+              )}
             </ul>
           </li>
           <li className="list-group-item">

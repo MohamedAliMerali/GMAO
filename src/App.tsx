@@ -9,10 +9,10 @@ import { menuItems } from "./Data/menuItems";
 import users, { User } from "./Data/users";
 
 function App() {
-  const [logged, setLogged] = useState(true);
+  const [logged, setLogged] = useState(false);
   const [user, setUser] = useState<User>(users[0]);
-  const [, setUserId] = useState(0);
-  const [selectedItem, setSelectedItem] = useState(5);
+  const [, setUserId] = useState(-1);
+  const [selectedItem, setSelectedItem] = useState(-1);
 
   const logOut = () => {
     setUser({} as User);

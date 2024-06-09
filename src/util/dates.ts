@@ -24,5 +24,3 @@ export const LastDays = (NDay: number): string[] => {
 
   return days;
 };
-
-console.log(LastDays(10));
