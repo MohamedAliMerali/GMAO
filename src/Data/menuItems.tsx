@@ -35,34 +35,34 @@ interface MenuItem {
 export const menuItems: MenuItem[] = [
   {
     item: "Liste des taches",
-    icon: <SiGoogletasks />,
+    icon: <SiGoogletasks size={18} />,
     component: (user) => <TasksList user={user} />,
   },
   {
     item: "Plans de maintenance",
-    icon: <FaCalendarPlus />,
+    icon: <FaCalendarPlus size={18} />,
     component: (user) => <MaintenancePlans user={user} />,
   },
   {
     item: "Etat des machines",
-    icon: <IoIosSpeedometer />,
+    icon: <IoIosSpeedometer size={18} />,
     component: (_, history, setHistory) => (
       <MachinesStates history={history} setHistory={setHistory} />
     ),
   },
   {
     item: "Documents machines",
-    icon: <IoDocuments />,
+    icon: <IoDocuments size={18} />,
     component: () => <MachineDocuments />,
   },
   {
     item: "Magasin des piece",
-    icon: <FaScrewdriverWrench />,
+    icon: <FaScrewdriverWrench size={18} />,
     component: () => <PiecesStore />,
   },
   {
     item: "Reporting & Dashboard",
-    icon: <BsFillMotherboardFill />,
+    icon: <BsFillMotherboardFill size={18} />,
     component: (_, history) => <Dashboard history={history} />,
   },
 ];

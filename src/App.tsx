@@ -28,25 +28,25 @@ function App() {
   return (
     <div className="flex flex-col h-screen">
       <Bar user={user} logOut={logOut} />
-      <div className="flex flex-1">
+      <div className="flex flex-col flex-1 min-[840px]:flex-row">
         {/* menu */}
-        <div className="w-full max-w-sm bg-stone-600 md:max-w-md lg:max-w-xl">
-          <ul className="pt-8 text-white">
+        <div className="min-[1050px]:w-full max-w-lg bg-stone-600 max-[840px]:max-w-full">
+          <ul className="pt-8 text-white max-[840px]:flex justify-evenly flex-wrap">
             {menuItems.map(({ item, icon }, num) => (
               <li
                 id={num.toString()}
                 key={num}
                 className={
-                  "hover:cursor-pointer hover:bg-slate-400 w-full py-6 px-10 flex flex-row justify-between " +
+                  "hover:cursor-pointer hover:bg-slate-400 py-6 px-10 flex flex-row justify-between " +
                   (selectedItem === num ? "bg-slate-400" : "")
                 }
                 onClick={() => setSelectedItem(num)}
               >
-                <div className="flex flex-row">
-                  <span className="m-2 hidden md:block">{icon}</span>
-                  {item}
+                <div className="flex flex-row items-center">
+                  <span className="min-[1001px]:mr-4 ">{icon}</span>
+                  <span className="max-[1000px]:hidden">{item}</span>
                 </div>
-                <span className="m-2 hidden sm:block">
+                <span className="m-2 max-[1050px]:hidden">
                   <VscTriangleRight />
                 </span>
               </li>

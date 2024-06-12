@@ -67,7 +67,7 @@ const Dashboard = ({ history }: Props) => {
     <Container pageTitle={"Graph de Disponibilité"}>
       <MyFormGroup data={serieData} setData={setSerieData} />
 
-      <div className="flex">
+      <div className="flex flex-col min-[1440px]:flex-row">
         <LineChart
           xAxis={[
             {
@@ -92,7 +92,7 @@ const Dashboard = ({ history }: Props) => {
           grid={{ vertical: true, horizontal: true }}
         />
 
-        <div className="flex flex-col justify-between">
+        <div className="flex min-[1440px]:flex-col justify-around mt-20">
           <div>
             <p className="text-center">Dernière Disponibilité</p>
             <GaugeContainer

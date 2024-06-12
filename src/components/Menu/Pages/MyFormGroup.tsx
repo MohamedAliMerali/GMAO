@@ -19,7 +19,7 @@ const MyFormGroup = ({ data, setData }: Props) => {
   };
 
   return (
-    <FormGroup className="flex flex-row">
+    <FormGroup className="flex flex-row justify-around">
       {data.map((dataItem, index) => (
         <span key={index}>
           <FormControlLabel

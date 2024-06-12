@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { User } from "../../Data/users";
 import saidal from "../../assets/saidal.png";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -10,25 +10,32 @@ interface Props {
 }
 const Bar = ({ user, logOut }: Props) => {
   const [showUserInfo, setShowUserInfo] = useState(false);
+
+  useEffect(() => {
+    const element = document.getElementById("user-info");
+    if (element) {
+      element.style.width = showUserInfo ? "250px" : "0px";
+      element.style.height = showUserInfo ? "386px" : "0px";
+    }
+  }, [showUserInfo]);
+
   return (
     <div className="py-2 px-6 flex flex-row justify-between items-center">
       <img src={saidal} alt="saidal logo" className="w-36" />
       <div className="hover:cursor-pointer">
         <div
           onClick={() => {
-            console.log(">> showUserInfo:", showUserInfo);
+            console.log(">> Show User Info:", showUserInfo);
             setShowUserInfo(!showUserInfo);
           }}
         >
           <GiHamburgerMenu className="w-12 h-12" />
         </div>
-        {/* // Todo: fix this  */}
       </div>
       <div
-        // todo: change this to have a transition
+        id="user-info"
         className={
-          "shadow-xl m-4 fixed z-10 right-10 top-10 overflow-x-hidden " +
-          (showUserInfo ? "w-auto" : "w-0")
+          "shadow-xl m-4 fixed z-10 right-10 top-10   transition-all duration-500 overflow-hidden"
         }
       >
         <ul className="list-group">

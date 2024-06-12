@@ -69,7 +69,7 @@ const MaintenancePlans = ({ user }: Props) => {
           {machines.map((machine, index) => (
             <li
               key={index}
-              className="bg-blue-200 rounded-full my-2 py-2 px-4 font-medium hover:cursor-pointer transition-all hover:bg-blue-400"
+              className="bg-white rounded-full my-2 py-2 px-4 font-medium hover:cursor-pointer transition-all hover:bg-blue-400"
               onClick={() => setSelectedItem(index)}
             >
               <span className="text-center text-red-600 bg-white rounded-full px-3 mr-2">
