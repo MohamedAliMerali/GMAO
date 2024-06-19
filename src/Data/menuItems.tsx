@@ -13,6 +13,7 @@ import { IoIosSpeedometer } from "react-icons/io";
 import { IoDocuments } from "react-icons/io5";
 import { FaScrewdriverWrench } from "react-icons/fa6";
 import { BsFillMotherboardFill } from "react-icons/bs";
+import { Task } from "./Tasks";
 
 export interface History {
   machineName: string;
@@ -27,7 +28,9 @@ interface MenuItem {
   component: (
     user: User,
     history: History[],
-    setHistory: (history: History[]) => void
+    setHistory: (history: History[]) => void,
+    tasks: Task[],
+    setTasks: (task: Task[]) => void
   ) => React.ReactNode;
 }
 
@@ -36,12 +39,18 @@ export const menuItems: MenuItem[] = [
   {
     item: "Liste des taches",
     icon: <SiGoogletasks size={18} />,
-    component: (user) => <TasksList user={user} />,
+    // todo: reformate this
+    component: (user, history, setHistory, tasks, setTasks) => (
+      <TasksList user={user} tasks={tasks} setTasks={setTasks} />
+    ),
   },
   {
     item: "Plans de maintenance",
     icon: <FaCalendarPlus size={18} />,
-    component: (user) => <MaintenancePlans user={user} />,
+    // todo: reformate this
+    component: (user, history, setHistory, tasks, setTasks) => (
+      <MaintenancePlans user={user} tasks={tasks} setTasks={setTasks} />
+    ),
   },
   {
     item: "Etat des machines",

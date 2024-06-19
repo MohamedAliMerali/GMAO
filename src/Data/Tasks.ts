@@ -1,27 +1,31 @@
 export interface Task {
-  name: string;
-  validation: boolean;
-  date: string;
+  task: string;
+  responsable: string;
+  validation: string;
+  delay: string;
   note: string;
 }
 
 let tasks: Task[] = [
   {
-    name: "do something",
-    validation: false,
-    date: "29/05/2024",
+    task: "do something",
+    responsable: "Admin",
+    delay: "2024-08-29",
+    validation: "fait",
     note: "URG",
   },
   {
-    name: "do something else",
-    validation: false,
-    date: "30/05/2024",
+    task: "do something else",
+    responsable: "Admin",
+    validation: "pas-encore",
+    delay: "2024-07-30",
     note: "",
   },
   {
-    name: "do that",
-    validation: true,
-    date: "31/05/2024",
+    task: "do that",
+    responsable: "Admin",
+    validation: "pas-encore",
+    delay: "2024-09-16",
     note: "",
   },
 ];

@@ -24,3 +24,13 @@ export const LastDays = (NDay: number): string[] => {
 
   return days;
 };
+
+export const TodaysDate = () => {
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+  const year = tomorrow.getFullYear();
+  const month = (tomorrow.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-indexed
+  const day = tomorrow.getDate().toString().padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};

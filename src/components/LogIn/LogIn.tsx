@@ -1,6 +1,6 @@
 import Welcome from "../Welcome";
-import { User } from "../../Data/users";
 import LogInForm from "./LogInForm";
+import { User } from "../../Data/users";
 
 // TODO: add validation to the form
 interface Props {

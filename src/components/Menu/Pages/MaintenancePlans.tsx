@@ -1,43 +1,50 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import machines, {
-  MaintenancePlansInterface,
-  Task,
-} from "../../../Data/machines";
+import TasksForm from "./PagesComponent/TasksForm";
+import machines, { MaintenancePlansInterface } from "../../../Data/machines";
 import { User } from "../../../Data/users";
 import Container from "../../../UI/Container";
+import { Task } from "../../../Data/Tasks";
 
 interface Props {
   user: User;
+  tasks: Task[];
+  setTasks: (task: Task[]) => void;
 }
 
-const MaintenancePlans = ({ user }: Props) => {
+const MaintenancePlans = ({ user, tasks, setTasks }: Props) => {
   const [selectedItem, setSelectedItem] = useState(-1);
   const [showForm, setShowForm] = useState(false);
-  const [error, setError] = useState(false);
-  const [minDate, setMinDate] = useState("");
+  const [error] = useState(false);
   const [maintenancePlans, setMaintenancePlans] = useState(
     machines.map((machine) => machine.MaintenancePlans)
   );
-  const { register, handleSubmit } = useForm();
+  const [periodState, setPeriodState] = useState<string>(
+    Object.entries(maintenancePlans[0])[0][0] // hebdomadaire
+  );
 
-  useEffect(() => {
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
-    const year = tomorrow.getFullYear();
-    const month = (tomorrow.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-indexed
-    const day = tomorrow.getDate().toString().padStart(2, "0");
-    setMinDate(`${year}-${month}-${day}`);
-  }, []);
-
+  const { register } = useForm();
   const onSubmit = (data: FieldValues) => {
-    if (data.period === "") {
-      console.log("error in data");
-      setError(true);
-      return;
-    }
-    setError(false);
+    data.period = periodState;
+    console.log(">> Data:", data);
+    // todo: ig no need for this, check later
+    // if (data.period === "") {
+    //   console.log("error in data");
+    //   setError(true);
+    //   return;
+    // }
+    // setError(false);
+
+    setTasks([
+      ...tasks,
+      {
+        task: data.tasks,
+        responsable: data.responsable,
+        validation: data.validation,
+        delay: data.delay,
+        note: data.note,
+      },
+    ]);
 
     const KEY = data.period as keyof MaintenancePlansInterface;
     setMaintenancePlans(
@@ -111,17 +118,19 @@ const MaintenancePlans = ({ user }: Props) => {
 
       {/* Form */}
       {showForm ? (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
+        <div className="space-y-2">
           <div>
             <label htmlFor="period">Period</label>
             <select
               id="period"
               {...register("period")}
+              value={periodState}
+              onChange={(event) => {
+                console.log("event:", event.target.value);
+                setPeriodState(event.target.value);
+              }}
               className="rounded-lg border-none outline-none py-2 px-4 w-full"
             >
-              <option value="" selected disabled>
-                Sélectionnez un plan de maintenance
-              </option>
               {Object.entries(maintenancePlans[selectedItem]).map(
                 ([period]) => (
                   <option key={period} value={period}>
@@ -134,78 +143,8 @@ const MaintenancePlans = ({ user }: Props) => {
               <p className="text-danger">Sélectionnez un plan de maintenance</p>
             ) : null}
           </div>
-          <div>
-            <label htmlFor="tasks">Taches</label>
-            <input
-              type="text"
-              id="tasks"
-              {...register("tasks")}
-              placeholder="Nouveau Tâche..."
-              className="rounded-lg border-none outline-none py-2 px-4 w-full"
-            />
-          </div>
-          <div>
-            <label htmlFor="responsable">responsable</label>
-            <input
-              type="text"
-              id="responsable"
-              {...register("responsable")}
-              placeholder="responsable..."
-              className="rounded-lg border-none outline-none py-2 px-4 w-full"
-            />
-          </div>
-          <div>
-            <label htmlFor="delay">Dernier delais</label>
-            <input
-              type="date"
-              id="delay"
-              {...register("delay")}
-              min={minDate}
-              defaultValue={minDate}
-              className="rounded-lg border-none outline-none py-2 px-4 w-full"
-            />
-          </div>
-          <div className="space-x-4">
-            <label htmlFor="validation">Validation: </label>
-            <input
-              id="validation"
-              type="radio"
-              value="true"
-              {...register("validation")}
-              className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
-            />
-            <label htmlFor="defaultRadio1" className="ms-2 text-gray-900">
-              Vrai
-            </label>
-            <input
-              checked
-              id="validation"
-              type="radio"
-              value="false"
-              {...register("validation")}
-              className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2"
-            />
-            <label htmlFor="defaultRadio2" className="ms-2 text-gray-900">
-              Faux
-            </label>
-          </div>
-          <div>
-            <label htmlFor="note">Remarque</label>
-            <input
-              type="text"
-              id="note"
-              {...register("note")}
-              placeholder="Remarque?..."
-              className="rounded-lg border-none outline-none py-2 px-4 w-full"
-            />
-          </div>
-          <button
-            type="submit"
-            className="outline-0 border-0 py-2 px-4 rounded-lg text-white bg-blue-600"
-          >
-            Add..
-          </button>
-        </form>
+          <TasksForm onSubmit={onSubmit}></TasksForm>
+        </div>
       ) : null}
 
       {/* plans Table */}
@@ -230,7 +169,7 @@ const MaintenancePlans = ({ user }: Props) => {
             {/* {console.log("tasks", tasks)} => [{...}] */}
             {tasks.map((plan: Task, taskIndex: number) => (
               <tr key={taskIndex}>
-                <td>{plan.tasks}</td>
+                <td>{plan.task}</td>
                 <td>{plan.responsable}</td>
                 <td>{plan.delay}</td>
                 <td>{plan.validation}</td>

@@ -6,7 +6,7 @@ import {
   LineChart,
   useGaugeState,
 } from "@mui/x-charts";
-import MyFormGroup from "./MyFormGroup";
+import DashboardForm from "./PagesComponent/DashboardForm";
 import Container from "../../../UI/Container";
 import { History } from "../../../Data/menuItems";
 import { LastDays } from "../../../util/dates";
@@ -65,7 +65,7 @@ const Dashboard = ({ history }: Props) => {
 
   return (
     <Container pageTitle={"Graph de Disponibilité"}>
-      <MyFormGroup data={serieData} setData={setSerieData} />
+      <DashboardForm data={serieData} setData={setSerieData} />
 
       <div className="flex flex-col min-[1440px]:flex-row">
         <LineChart

@@ -7,7 +7,7 @@ interface Props {
   setData: (data: SerieData[]) => void;
 }
 
-const MyFormGroup = ({ data, setData }: Props) => {
+const DashboardForm = ({ data, setData }: Props) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
     console.log(name, checked);
@@ -39,7 +39,7 @@ const MyFormGroup = ({ data, setData }: Props) => {
   );
 };
 
-export default MyFormGroup;
+export default DashboardForm;
 // {/* <FormControlLabel
 //   control={
 //     <Checkbox

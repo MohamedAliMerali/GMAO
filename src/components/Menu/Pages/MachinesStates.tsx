@@ -138,6 +138,7 @@ const MachinesStates = ({ history, setHistory }: Props) => {
                     // value={getRandomNumberBetween(5, 15)}
                     defaultValue={0}
                     min={0}
+                    step={0.1}
                     name={"WorkHours_" + index}
                     id={"WorkHours_" + index}
                     className="rounded-2xl text-center"
@@ -151,6 +152,7 @@ const MachinesStates = ({ history, setHistory }: Props) => {
                     // value={getRandomNumberBetween(1, 5)}
                     defaultValue={0}
                     min={0}
+                    step={0.1}
                     name={"numPanne_" + index}
                     id={"numPanne_" + index}
                     className="rounded-2xl text-center"
@@ -164,6 +166,7 @@ const MachinesStates = ({ history, setHistory }: Props) => {
                     // value={getRandomNumberBetween(1, 5)}
                     defaultValue={0}
                     min={0}
+                    step={0.1}
                     name={"breakDuration_" + index}
                     id={"breakDuration_" + index}
                     className="rounded-2xl text-center"

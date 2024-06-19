@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { menuItems } from "../../Data/menuItems";
+import tasksLists from "../../Data/Tasks";
 import { User } from "../../Data/users";
 import machines from "../../Data/machines";
 // import { History } from "../../Data/menuItems";
@@ -26,9 +27,16 @@ const getInitialHistory = () => {
 };
 
 const Menu = ({ user, itemNum }: Props) => {
+  const [tasks, setTasks] = useState(tasksLists);
   const [history, setHistory] = useState(() => getInitialHistory());
 
-  return menuItems[itemNum].component(user, history, setHistory);
+  return menuItems[itemNum].component(
+    user,
+    history,
+    setHistory,
+    tasks,
+    setTasks
+  );
 };
 
 // const Menu = ({ user, itemNum }: Props) => {
