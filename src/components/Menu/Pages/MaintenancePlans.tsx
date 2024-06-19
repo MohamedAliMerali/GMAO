@@ -148,37 +148,59 @@ const MaintenancePlans = ({ user, tasks, setTasks }: Props) => {
       ) : null}
 
       {/* plans Table */}
-      {Object.entries(maintenancePlans[selectedItem]).map(([period, tasks]) => (
-        <table key={period} className="table table-hover mb-5">
-          <thead>
-            <tr className="table-light">
-              <th colSpan={6} className="text-center">
-                {period.toUpperCase()}
-              </th>
-            </tr>
-            <tr className="table-light">
-              <th scope="col">Les taches</th>
-              <th scope="col">responsable</th>
-              <th scope="col">Dernier délais</th>
-              <th scope="col">Validation</th>
-              <th scope="col">Remarque</th>
-              {/* <th scope="col">Controle</th> */}
-            </tr>
-          </thead>
-          <tbody>
-            {/* {console.log("tasks", tasks)} => [{...}] */}
-            {tasks.map((plan: Task, taskIndex: number) => (
-              <tr key={taskIndex}>
-                <td>{plan.task}</td>
-                <td>{plan.responsable}</td>
-                <td>{plan.delay}</td>
-                <td>{plan.validation}</td>
-                <td>{plan.note}</td>
+      {Object.entries(maintenancePlans[selectedItem]).map(
+        ([period, periodTasks]) => (
+          <table key={period} className="table table-hover mb-5">
+            <thead>
+              <tr className="table-light">
+                <th colSpan={6} className="text-center">
+                  {period.toUpperCase()}
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      ))}
+              <tr className="table-light">
+                <th scope="col">Les taches</th>
+                <th scope="col">responsable</th>
+                <th scope="col">Dernier délais</th>
+                <th scope="col">Validation</th>
+                <th scope="col">Remarque</th>
+                <th scope="col">Controle</th>
+                {/* <th scope="col">Controle</th> */}
+              </tr>
+            </thead>
+            <tbody>
+              {/* {console.log("tasks", tasks)} => [{...}] */}
+              {periodTasks.map((plan: Task, taskIndex: number) => (
+                <tr key={taskIndex}>
+                  <td>{plan.task}</td>
+                  <td>{plan.responsable}</td>
+                  <td>{plan.delay}</td>
+                  <td>{plan.validation}</td>
+                  <td>{plan.note}</td>
+                  <td>
+                    <button
+                      className="btn btn-outline-primary"
+                      onClick={() => {
+                        setTasks([
+                          ...tasks,
+                          {
+                            task: plan.task,
+                            responsable: plan.responsable,
+                            delay: plan.delay,
+                            validation: plan.validation,
+                            note: plan.note,
+                          },
+                        ]);
+                      }}
+                    >
+                      Ajoute Tache
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )
+      )}
     </Container>
   );
 };

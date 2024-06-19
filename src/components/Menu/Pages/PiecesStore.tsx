@@ -12,7 +12,6 @@ interface Props {
 const PiecesStore = ({ user }: Props) => {
   const [pieces, setPieces] = useState(piecesData);
   return (
-    // Todo: add a form to add some pieces
     <Container pageTitle={"Liste des pièces de rechange:"}>
       {user.authorizations.includes("addPiece") ? (
         <PieceForm pieces={pieces} setPieces={setPieces} />
