@@ -8,3 +8,9 @@ export default [
   { name: "pièce 7", number: "0", fileName: "PiecesExp.pdf" },
   { name: "pièce 8", number: "0", fileName: "PiecesExp.pdf" },
 ];
+
+export interface PiecesInterface {
+  name: string;
+  number: string;
+  fileName: string;
+}

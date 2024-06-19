@@ -55,7 +55,7 @@ function App() {
         </div>
 
         {/* selected page */}
-        <div className="bg-gray-300 w-full px-16 pt-20 h-full overflow-y-scroll">
+        <div className="bg-gray-300 w-full px-16 py-20 h-full overflow-y-scroll">
           {selectedItem >= 0 ? (
             <Menu user={user} itemNum={selectedItem} />
           ) : (

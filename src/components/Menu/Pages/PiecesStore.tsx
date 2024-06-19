@@ -1,11 +1,22 @@
+import { useState } from "react";
 import { GrDocumentPdf } from "react-icons/gr";
-import pieces from "../../../Data/pieces";
+import PieceForm from "./PagesComponent/PieceForm";
+import { User } from "../../../Data/users";
+import piecesData from "../../../Data/pieces";
 import Container from "../../../UI/Container";
 
-const PiecesStore = () => {
+interface Props {
+  user: User;
+}
+
+const PiecesStore = ({ user }: Props) => {
+  const [pieces, setPieces] = useState(piecesData);
   return (
     // Todo: add a form to add some pieces
     <Container pageTitle={"Liste des pièces de rechange:"}>
+      {user.authorizations.includes("addPiece") ? (
+        <PieceForm pieces={pieces} setPieces={setPieces} />
+      ) : null}
       <ul className="list-group hover:cursor-pointer">
         {pieces.map((piece, index) => (
           <li
