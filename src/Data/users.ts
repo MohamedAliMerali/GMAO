@@ -18,6 +18,7 @@ export default [
       "deleteTask",
       "addMaintenancePlans",
       "deleteMaintenancePlans",
+      "addPiece",
     ],
   },
   {

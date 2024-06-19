@@ -21,17 +21,19 @@ export interface History {
   breakDuration_: number;
   DISPHist: number[];
 }
+
+interface ComponentProps {
+  user: User;
+  history: History[];
+  setHistory: (history: History[]) => void;
+  tasks: Task[];
+  setTasks: (task: Task[]) => void;
+}
 // Define the type for the menu items
 interface MenuItem {
   item: string;
   icon: ReactNode;
-  component: (
-    user: User,
-    history: History[],
-    setHistory: (history: History[]) => void,
-    tasks: Task[],
-    setTasks: (task: Task[]) => void
-  ) => React.ReactNode;
+  component: (componentProps: ComponentProps) => React.ReactNode;
 }
 
 // Create and export the menu array
@@ -40,7 +42,7 @@ export const menuItems: MenuItem[] = [
     item: "Liste des taches",
     icon: <SiGoogletasks size={18} />,
     // todo: reformate this
-    component: (user, history, setHistory, tasks, setTasks) => (
+    component: ({ user, tasks, setTasks }) => (
       <TasksList user={user} tasks={tasks} setTasks={setTasks} />
     ),
   },
@@ -48,14 +50,14 @@ export const menuItems: MenuItem[] = [
     item: "Plans de maintenance",
     icon: <FaCalendarPlus size={18} />,
     // todo: reformate this
-    component: (user, history, setHistory, tasks, setTasks) => (
+    component: ({ user, tasks, setTasks }) => (
       <MaintenancePlans user={user} tasks={tasks} setTasks={setTasks} />
     ),
   },
   {
     item: "Etat des machines",
     icon: <IoIosSpeedometer size={18} />,
-    component: (_, history, setHistory) => (
+    component: ({ history, setHistory }) => (
       <MachinesStates history={history} setHistory={setHistory} />
     ),
   },
@@ -72,6 +74,6 @@ export const menuItems: MenuItem[] = [
   {
     item: "Reporting & Dashboard",
     icon: <BsFillMotherboardFill size={18} />,
-    component: (_, history) => <Dashboard history={history} />,
+    component: ({ history }) => <Dashboard history={history} />,
   },
 ];

@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 import { FormGroup, FormControlLabel, Checkbox } from "@mui/material";
-import { SerieData } from "./Dashboard";
+import { SerieData } from "../Dashboard";
 
 interface Props {
   data: SerieData[];

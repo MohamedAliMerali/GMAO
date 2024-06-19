@@ -1,11 +1,5 @@
 import { useState } from "react";
-import {
-  GaugeContainer,
-  GaugeReferenceArc,
-  GaugeValueArc,
-  LineChart,
-  useGaugeState,
-} from "@mui/x-charts";
+import { LineChart } from "@mui/x-charts";
 import DashboardForm from "./PagesComponent/DashboardForm";
 import Container from "../../../UI/Container";
 import { History } from "../../../Data/menuItems";
@@ -19,30 +13,6 @@ export interface SerieData {
   machineName: string;
   DISPHist: number[];
   show: boolean;
-}
-
-function GaugePointer() {
-  const { valueAngle, outerRadius, cx, cy } = useGaugeState();
-
-  if (valueAngle === null) {
-    // No value to display
-    return null;
-  }
-
-  const target = {
-    x: cx + outerRadius * Math.sin(valueAngle),
-    y: cy - outerRadius * Math.cos(valueAngle),
-  };
-  return (
-    <g>
-      <circle cx={cx} cy={cy} r={5} fill="red" />
-      <path
-        d={`M ${cx} ${cy} L ${target.x} ${target.y}`}
-        stroke="red"
-        strokeWidth={3}
-      />
-    </g>
-  );
 }
 
 const Dashboard = ({ history }: Props) => {
@@ -92,7 +62,7 @@ const Dashboard = ({ history }: Props) => {
           grid={{ vertical: true, horizontal: true }}
         />
 
-        <div className="flex min-[1440px]:flex-col justify-around mt-20">
+        {/* <div className="flex min-[1440px]:flex-col justify-around mt-20">
           <div>
             <p className="text-center">Dernière Disponibilité</p>
             <GaugeContainer
@@ -139,7 +109,7 @@ const Dashboard = ({ history }: Props) => {
               <GaugePointer />
             </GaugeContainer>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* 

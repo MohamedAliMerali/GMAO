@@ -30,13 +30,13 @@ const Menu = ({ user, itemNum }: Props) => {
   const [tasks, setTasks] = useState(tasksLists);
   const [history, setHistory] = useState(() => getInitialHistory());
 
-  return menuItems[itemNum].component(
+  return menuItems[itemNum].component({
     user,
     history,
     setHistory,
     tasks,
-    setTasks
-  );
+    setTasks,
+  });
 };
 
 // const Menu = ({ user, itemNum }: Props) => {

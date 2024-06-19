@@ -1,6 +1,6 @@
 import { GrDocumentPdf } from "react-icons/gr";
-import Container from "../../../UI/Container";
 import pieces from "../../../Data/pieces";
+import Container from "../../../UI/Container";
 
 const PiecesStore = () => {
   return (
