@@ -2,7 +2,9 @@ import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import machines, { reports as importedReport } from "../../../Data/machines";
 import { History } from "../../../Data/menuItems";
+import pdfFile from "../../../Data/L'état des machines des années présédent.pdf";
 import Container from "../../../UI/Container";
+
 interface Props {
   history: History[];
   setHistory: (history: History[]) => void;
@@ -181,6 +183,17 @@ const MachinesStates = ({ history, setHistory }: Props) => {
           </tbody>
         </table>
       </form>
+      <div>
+        {/* another way
+        <embed src={pdfFile} width="100%" height="600px" /> */}
+        <iframe
+          src={pdfFile}
+          title="Example Iframe"
+          width="100%"
+          height="800"
+          style={{ border: "none" }}
+        />
+      </div>
     </Container>
   );
 };
