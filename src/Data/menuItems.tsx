@@ -7,6 +7,7 @@ import PiecesStore from "../components/Menu/Pages/PiecesStore";
 import Dashboard from "../components/Menu/Pages/Dashboard";
 import { User } from "./users";
 // import { MdOutlineTaskAlt } from "react-icons/md";
+import { IoNotifications } from "react-icons/io5";
 import { SiGoogletasks } from "react-icons/si";
 import { FaCalendarPlus } from "react-icons/fa";
 import { IoIosSpeedometer } from "react-icons/io";
@@ -14,6 +15,8 @@ import { IoDocuments } from "react-icons/io5";
 import { FaScrewdriverWrench } from "react-icons/fa6";
 import { BsFillMotherboardFill } from "react-icons/bs";
 import { Task } from "./Tasks";
+import NotificationForm from "../components/Menu/Pages/NotificationForm";
+import { NotificationsInterface } from "./userNotifications";
 
 export interface History {
   machineName: string;
@@ -28,6 +31,8 @@ interface ComponentProps {
   setHistory: (history: History[]) => void;
   tasks: Task[];
   setTasks: (task: Task[]) => void;
+  notifications: NotificationsInterface;
+  setNotifications: (notifications: NotificationsInterface) => void;
 }
 // Define the type for the menu items
 interface MenuItem {
@@ -38,6 +43,17 @@ interface MenuItem {
 
 // Create and export the menu array
 export const menuItems: MenuItem[] = [
+  {
+    item: "Notifications",
+    icon: <IoNotifications size={18} />,
+    component: ({ user, notifications, setNotifications }) => (
+      <NotificationForm
+        user={user}
+        notifications={notifications}
+        setNotifications={setNotifications}
+      />
+    ),
+  },
   {
     item: "Liste des taches",
     icon: <SiGoogletasks size={18} />,

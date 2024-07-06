@@ -10,6 +10,10 @@ interface Props {
   setTasks: (task: Task[]) => void;
 }
 
+// Todo:
+// - we cann make the user info in locale storage
+// - we can give the admin a way to give and remove privileges
+
 const TasksList = ({ user, tasks, setTasks }: Props) => {
   const onSubmit = (data: FieldValues) => {
     console.log(data);

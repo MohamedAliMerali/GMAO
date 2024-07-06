@@ -10,7 +10,16 @@
 
 body {
   font-size: 1.6rem;
+}
 
-  /* --test-bg-light: #fefefe;
-  --test-bg-dark: #191919; */
+/* Custom CSS to solve the scrollbar issue in notif history */
+/* styles.css */
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  height: 0; /* Remove scrollbar space */
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

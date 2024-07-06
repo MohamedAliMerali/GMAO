@@ -19,6 +19,7 @@ export default [
       "addMaintenancePlans",
       "deleteMaintenancePlans",
       "addPiece",
+      "addNotifications",
     ],
   },
   {

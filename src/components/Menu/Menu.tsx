@@ -3,13 +3,17 @@ import { menuItems } from "../../Data/menuItems";
 import tasksLists from "../../Data/Tasks";
 import { User } from "../../Data/users";
 import machines from "../../Data/machines";
+import { NotificationsInterface } from "../../Data/userNotifications";
 // import { History } from "../../Data/menuItems";
 
 // Props and component
 interface Props {
   user: User;
+  notifications: NotificationsInterface;
+  setNotifications: (notifications: NotificationsInterface) => void;
   itemNum: number;
 }
+
 const getInitialHistory = () => {
   const storedItem = localStorage.getItem("TBFhistory");
   if (storedItem) {
@@ -26,7 +30,7 @@ const getInitialHistory = () => {
   }
 };
 
-const Menu = ({ user, itemNum }: Props) => {
+const Menu = ({ user, notifications, setNotifications, itemNum }: Props) => {
   const [tasks, setTasks] = useState(tasksLists);
   const [history, setHistory] = useState(() => getInitialHistory());
 
@@ -36,6 +40,8 @@ const Menu = ({ user, itemNum }: Props) => {
     setHistory,
     tasks,
     setTasks,
+    notifications,
+    setNotifications,
   });
 };
 

@@ -184,6 +184,7 @@ const MachinesStates = ({ history, setHistory }: Props) => {
         </table>
       </form>
       <div>
+        <h2 className="text-5xl mt-10 mb-4">L'état des Machines Président</h2>
         {/* another way
         <embed src={pdfFile} width="100%" height="600px" /> */}
         <iframe
