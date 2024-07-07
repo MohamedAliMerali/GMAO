@@ -58,9 +58,17 @@ const setNotifHandler = (
 };
 
 function App() {
-  const [logged, setLogged] = useState(false);
-  const [user, setUser] = useState<User>({} as User);
-  const [, setUserId] = useState(0);
+  const loggedKey = localStorage.getItem("loggedKey");
+  const userKey = localStorage.getItem("userKey");
+  const userIdKey = localStorage.getItem("userIdKey");
+
+  const [logged, setLogged] = useState(
+    loggedKey ? JSON.parse(loggedKey) : false
+  );
+  const [user, setUser] = useState<User>(
+    userKey ? JSON.parse(userKey) : ({} as User)
+  );
+  const [, setUserId] = useState(userIdKey ? JSON.parse(userIdKey) : -1);
   const [selectedItem, setSelectedItem] = useState(-1);
   //
   const [notifications, setNotifications] = useState<NotificationsInterface>(
@@ -77,9 +85,14 @@ function App() {
       <Bar
         user={user}
         logOut={() => {
-          setUser({} as User);
           setLogged(false);
+          setUser({} as User);
+          setUserId(-1);
           setSelectedItem(-1);
+
+          localStorage.setItem("loggedKey", JSON.stringify(false));
+          localStorage.setItem("userKey", JSON.stringify({} as User));
+          localStorage.setItem("userIdKey", JSON.stringify(-1));
         }}
       />
       <div className="flex flex-col flex-1 min-[840px]:flex-row relative">

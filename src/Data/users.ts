@@ -34,13 +34,13 @@ export default [
     name: "user1",
     password: "user1",
     type: "user",
-    authorizations: [],
+    authorizations: ["validateTask"],
   },
   {
     profileAvatar: "profileAvatar.jpg",
     name: "user2",
     password: "user2",
     type: "user",
-    authorizations: [],
+    authorizations: ["validateTask"],
   },
 ];

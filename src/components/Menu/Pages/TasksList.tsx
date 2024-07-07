@@ -41,7 +41,7 @@ const TasksList = ({ user, tasks, setTasks }: Props) => {
         <table className="table table-striped table-hover">
           <thead>
             <tr>
-              <th scope="col">Les taches</th>
+              <th scope="col">Les tâches</th>
               <th scope="col">Responsable</th>
               <th scope="col">Validation</th>
               <th scope="col">La date</th>

@@ -24,6 +24,9 @@ const LogInForm = ({ setUser, setUserId, setLogged }: Props) => {
         setUser(users[index]);
         setUserId(index);
         setLogged(true);
+        localStorage.setItem("loggedKey", JSON.stringify(true));
+        localStorage.setItem("userKey", JSON.stringify(users[index]));
+        localStorage.setItem("userIdKey", JSON.stringify(index));
         break;
       }
       setLogInError(true);

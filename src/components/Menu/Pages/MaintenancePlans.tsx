@@ -71,7 +71,7 @@ const MaintenancePlans = ({ user, tasks, setTasks }: Props) => {
 
   if (selectedItem === -1)
     return (
-      <Container pageTitle={"Vou trouvez les plans de maintenances:"}>
+      <Container pageTitle={"Vous trouvez les plans de maintenances:"}>
         <ul>
           {machines.map((machine, index) => (
             <li
@@ -105,14 +105,14 @@ const MaintenancePlans = ({ user, tasks, setTasks }: Props) => {
             }
             onClick={() => setShowForm(!showForm)}
           >
-            {showForm ? "cancel" : "Add A Task"}
+            {showForm ? "Annuler" : "Ajouter une Tâche"}
           </button>
         ) : null}
         <button
           className="outline-0 border-0 py-2 px-4 rounded-lg text-white bg-red-600"
           onClick={() => setSelectedItem(-1)}
         >
-          Return
+          Retour
         </button>
       </div>
 
@@ -158,7 +158,7 @@ const MaintenancePlans = ({ user, tasks, setTasks }: Props) => {
                 </th>
               </tr>
               <tr className="table-light">
-                <th scope="col">Les taches</th>
+                <th scope="col">Les tâches</th>
                 <th scope="col">responsable</th>
                 <th scope="col">Dernier délais</th>
                 <th scope="col">Validation</th>
@@ -192,7 +192,7 @@ const MaintenancePlans = ({ user, tasks, setTasks }: Props) => {
                         ]);
                       }}
                     >
-                      Ajoute Tache
+                      Ajouter Tâche
                     </button>
                   </td>
                 </tr>

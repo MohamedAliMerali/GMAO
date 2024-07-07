@@ -55,7 +55,7 @@ export const menuItems: MenuItem[] = [
     ),
   },
   {
-    item: "Liste des taches",
+    item: "Liste des tâches",
     icon: <SiGoogletasks size={18} />,
     // todo: reformate this
     component: ({ user, tasks, setTasks }) => (

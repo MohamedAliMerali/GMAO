@@ -52,13 +52,13 @@ const Bar = ({ user, logOut }: Props) => {
             />
           </li>
           <li className="list-group-item text-nowrap overflow-hidden">
-            Name: {user.name}
+            Nom: {user.name}
           </li>
           <li className="list-group-item text-nowrap overflow-hidden">
             Type: {user.type}
           </li>
           <li className="list-group-item text-nowrap overflow-hidden">
-            Authorizations:
+            Autorisations:
             <ul className="list-group">
               {user.authorizations.length === 0 ? (
                 <li className="ml-4">None</li>
@@ -79,7 +79,7 @@ const Bar = ({ user, logOut }: Props) => {
               className="btn btn-outline-danger float-right text-nowrap overflow-hidden"
               onClick={() => logOut()}
             >
-              Log Out
+              Se déconnecter
             </button>
           </li>
         </ul>

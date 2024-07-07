@@ -13,7 +13,7 @@ const TasksForm = ({ onSubmit }: Props) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
       <div>
-        <label htmlFor="tasks">Taches</label>
+        <label htmlFor="tasks">Tâches</label>
         <input
           type="text"
           id="tasks"
@@ -95,7 +95,7 @@ const TasksForm = ({ onSubmit }: Props) => {
         type="submit"
         className="outline-0 border-0 py-2 px-4 rounded-lg text-white bg-blue-600"
       >
-        Add..
+        Ajouter..
       </button>
     </form>
   );
