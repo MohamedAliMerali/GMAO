@@ -3,6 +3,7 @@ import { GrDocumentPdf } from "react-icons/gr";
 import PieceForm from "./PagesComponent/PieceForm";
 import { User } from "../../../Data/users";
 import piecesData from "../../../Data/pieces";
+import piecesPDF from "../../../Data/PiecesExp.pdf";
 import Container from "../../../UI/Container";
 
 interface Props {
@@ -24,7 +25,7 @@ const PiecesStore = ({ user }: Props) => {
           >
             <span>{piece.name}</span>
             <span className="flex items-center">
-              <a href={"/src/Data/" + piece.fileName} download className="mr-4">
+              <a href={piecesPDF} download className="mr-4">
                 <GrDocumentPdf />
               </a>
               <span className="badge text-bg-primary rounded-pill w-20">
